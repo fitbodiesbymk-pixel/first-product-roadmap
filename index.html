@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<title>First Product Roadmap</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,600&family=Outfit:wght@400;500;600&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════
+   TOKENS — Light
+═══════════════════════════════════════════ */
+:root {
+  --g:         #F4F1E9;
+  --surf:      #EBE7DC;
+  --border:    #D4CEBC;
+  --ink:       #191815;
+  --ink-mid:   #4F4B42;
+  --ink-soft:  #8A8478;
+
+  --blue:      #2B4870;
+  --blue-dim:  #4D6FA0;
+  --blue-wash: #E5EDF6;
+
+  --amber:     #935E16;
+  --amber-dim: #B58338;
+  --amber-wash:#F9F0DF;
+
+  --sage:      #35614A;
+  --sage-dim:  #5B896E;
+  --sage-wash: #E1EFEA;
+
+  --r:  4px;
+  --rl: 10px;
+  --fd: 'Fraunces', Georgia, serif;
+  --fb: 'Outfit', system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --g:         #15130E;
+    --surf:      #1D1A14;
+    --border:    #302C24;
+    --ink:       #EDE8DE;
+    --ink-mid:   #A8A297;
+    --ink-soft:  #69635A;
+    --blue:      #75A6D4;
+    --blue-dim:  #4870A0;
+    --blue-wash: #0E192A;
+    --amber:     #CFA04A;
+    --amber-dim: #9E7330;
+    --amber-wash:#1C1208;
+    --sage:      #68AA80;
+    --sage-dim:  #3A6B50;
+    --sage-wash: #0C1A12;
+  }
+}
+:root[data-theme="dark"] {
+  --g:         #15130E;
+  --surf:      #1D1A14;
+  --border:    #302C24;
+  --ink:       #EDE8DE;
+  --ink-mid:   #A8A297;
+  --ink-soft:  #69635A;
+  --blue:      #75A6D4;
+  --blue-dim:  #4870A0;
+  --blue-wash: #0E192A;
+  --amber:     #CFA04A;
+  --amber-dim: #9E7330;
+  --amber-wash:#1C1208;
+  --sage:      #68AA80;
+  --sage-dim:  #3A6B50;
+  --sage-wash: #0C1A12;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 18px; scroll-behavior: smooth; }
+body {
+  background: var(--g);
+  color: var(--ink);
+  font-family: var(--fb);
+  line-height: 1.72;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--blue); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { text-wrap: balance; }
+
+/* ── HEADER ── */
+.hd {
+  position: sticky; top: 0; z-index: 200;
+  background: var(--g);
+  border-bottom: 1px solid var(--border);
+}
+.hd-in {
+  max-width: 1180px; margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex; align-items: center; gap: 2rem;
+}
+.brand {
+  font-family: var(--fd); font-weight: 700; font-size: 0.9rem;
+  letter-spacing: -0.01em; color: var(--ink); white-space: nowrap;
+}
+.prog-wrap { flex: 1; display: flex; align-items: center; gap: 0.875rem; }
+.prog-track { flex: 1; height: 3px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.prog-fill { height: 100%; width: 0%; background: var(--sage); border-radius: 2px; transition: width 0.5s ease; }
+.prog-text { font-size: 0.7rem; color: var(--ink-soft); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ── LAYOUT ── */
+.wrap {
+  max-width: 1180px; margin: 0 auto; padding: 0 1.5rem;
+  display: grid; grid-template-columns: 206px 1fr; gap: 0 3.5rem; align-items: start;
+}
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: sticky; top: 54px; padding: 2.5rem 0;
+  max-height: calc(100vh - 54px); overflow-y: auto;
+}
+.nav-grp { margin-bottom: 2rem; }
+.nav-phase-lbl {
+  display: block; font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.15em;
+  padding: 0 0.25rem 0.5rem;
+  border-bottom: 1px solid var(--border); margin-bottom: 0.4rem;
+}
+.nav-phase-lbl.p1 { color: var(--blue); }
+.nav-phase-lbl.p2 { color: var(--amber); }
+.nav-phase-lbl.p3 { color: var(--sage); }
+.nav-grp ul { list-style: none; display: flex; flex-direction: column; gap: 1px; }
+.nav-grp li a {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.77rem; color: var(--ink-soft);
+  padding: 0.28rem 0.4rem; border-radius: var(--r);
+  transition: background 0.15s, color 0.15s; line-height: 1.35;
+}
+.nav-grp li a:hover { background: var(--surf); color: var(--ink); text-decoration: none; }
+.nav-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  border: 1.5px solid var(--border); background: transparent;
+  flex-shrink: 0; transition: background 0.2s, border-color 0.2s;
+}
+.nav-grp li.nav-done .nav-dot { background: var(--sage); border-color: var(--sage); }
+.nav-grp li.nav-done a { color: var(--ink-soft); }
+
+/* ── MAIN ── */
+.main { padding: 3rem 0 7rem; }
+
+/* ── INTRO ── */
+.intro { margin-bottom: 4.5rem; }
+.intro-eye {
+  display: block; font-size: 0.62rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.16em;
+  color: var(--ink-soft); margin-bottom: 1.25rem;
+}
+.intro h1 {
+  font-family: var(--fd); font-size: 2.9rem; font-weight: 300;
+  font-style: italic; line-height: 1.15; letter-spacing: -0.025em;
+  color: var(--ink); margin-bottom: 1.25rem;
+}
+.intro h1 b { font-weight: 700; font-style: normal; }
+.intro-lead { font-size: 0.975rem; color: var(--ink-mid); max-width: 55ch; line-height: 1.8; margin-bottom: 2rem; }
+.note {
+  padding: 1.125rem 1.5rem;
+  border-left: 3px solid var(--sage);
+  background: var(--sage-wash);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.note p { font-size: 0.875rem; color: var(--ink-mid); line-height: 1.7; }
+.note strong { color: var(--ink); font-weight: 600; }
+
+/* ── BEFORE YOU BEGIN ── */
+.byb {
+  margin-bottom: 3.5rem;
+}
+.byb-in {
+  background: var(--amber-wash);
+  border: 1px solid var(--amber-dim);
+  border-radius: var(--rl);
+  padding: 2rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+.byb-eye {
+  display: inline-block;
+  font-family: var(--fb);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+.byb-hd {
+  font-family: var(--fd);
+  font-style: italic;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+.byb-body {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--ink-mid);
+}
+
+
+/* ── KEY BANNER ── */
+.key-banner {
+  background: var(--amber-wash);
+  border: 1px solid var(--amber-dim);
+  border-radius: var(--rl);
+  padding: 1.1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+.key-banner.hidden { display: none; }
+.key-banner-text { flex: 1; min-width: 200px; }
+.key-banner-text strong { color: var(--amber); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; display: block; margin-bottom: 0.2rem; }
+.key-banner-text p { font-size: 0.85rem; color: var(--ink-mid); line-height: 1.5; }
+.key-input-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.key-input {
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  background: var(--g);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.45rem 0.75rem;
+  color: var(--ink);
+  width: 260px;
+  max-width: 100%;
+  outline: none;
+}
+.key-input:focus { border-color: var(--amber); }
+.key-save-btn {
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--amber);
+  color: white;
+  border: none;
+  border-radius: var(--r);
+  padding: 0.45rem 1rem;
+  cursor: pointer;
+}
+.key-save-btn:hover { opacity: 0.88; }
+
+/* ── AI WIDGET ── */
+.ai-widget {
+  margin-top: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--rl);
+  overflow: hidden;
+  background: var(--g);
+}
+.ai-widget-hd {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  background: var(--surf);
+  border-bottom: 1px solid var(--border);
+}
+.ai-badge {
+  font-family: var(--fb);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--blue);
+}
+.ai-widget.w-amber .ai-badge { color: var(--amber); }
+.ai-widget.w-sage .ai-badge { color: var(--sage); }
+.ai-name {
+  font-family: var(--fb);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex: 1;
+}
+.ai-model {
+  font-family: var(--fb);
+  font-size: 0.65rem;
+  color: var(--ink-soft);
+  background: var(--border);
+  padding: 0.1rem 0.45rem;
+  border-radius: 99px;
+}
+.ai-chat {
+  padding: 1rem;
+  min-height: 80px;
+  max-height: 340px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.ai-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.ai-empty p {
+  font-size: 0.88rem;
+  color: var(--ink-mid);
+  line-height: 1.6;
+}
+.ai-start-btn {
+  font-family: var(--fb);
+  font-size: 0.82rem;
+  font-weight: 600;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: var(--r);
+  padding: 0.5rem 1.1rem;
+  cursor: pointer;
+}
+.ai-widget.w-amber .ai-start-btn { background: var(--amber); }
+.ai-widget.w-sage .ai-start-btn { background: var(--sage); }
+.ai-start-btn:hover { opacity: 0.88; }
+.ai-msg {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+  max-width: 92%;
+}
+.ai-msg.user { align-self: flex-end; align-items: flex-end; }
+.ai-msg.ai { align-self: flex-start; align-items: flex-start; }
+.ai-msg-who {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.ai-bubble {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: var(--rl);
+  padding: 0.65rem 0.9rem;
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--ink);
+  white-space: pre-wrap;
+}
+.ai-msg.user .ai-bubble {
+  background: var(--blue-wash);
+  border-color: var(--blue-dim);
+}
+.ai-widget.w-amber .ai-msg.user .ai-bubble { background: var(--amber-wash); border-color: var(--amber-dim); }
+.ai-widget.w-sage .ai-msg.user .ai-bubble { background: var(--sage-wash); border-color: var(--sage-dim); }
+.ai-cursor {
+  display: inline-block;
+  width: 2px; height: 1em;
+  background: var(--ink-mid);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  animation: blink 0.9s step-end infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.ai-input-row {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-top: 1px solid var(--border);
+  background: var(--surf);
+  align-items: flex-end;
+}
+.ai-textarea {
+  flex: 1;
+  font-family: var(--fb);
+  font-size: 0.875rem;
+  background: var(--g);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 0.5rem 0.75rem;
+  color: var(--ink);
+  resize: none;
+  line-height: 1.5;
+  outline: none;
+}
+.ai-textarea:focus { border-color: var(--blue); }
+.ai-widget.w-amber .ai-textarea:focus { border-color: var(--amber); }
+.ai-widget.w-sage .ai-textarea:focus { border-color: var(--sage); }
+.ai-send-btn {
+  font-family: var(--fb);
+  font-size: 1rem;
+  font-weight: 700;
+  background: var(--blue);
+  color: white;
+  border: none;
+  border-radius: var(--r);
+  width: 2.2rem;
+  height: 2.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ai-widget.w-amber .ai-send-btn { background: var(--amber); }
+.ai-widget.w-sage .ai-send-btn { background: var(--sage); }
+.ai-send-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.ai-send-btn:hover:not(:disabled) { opacity: 0.88; }
+.ai-reset {
+  font-family: var(--fb);
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.1rem 0;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.ai-reset:hover { color: var(--ink); }
+
+/* ── PHASE ── */
+.phase { margin-bottom: 5rem; }
+.ph-head {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding-bottom: 1.375rem; margin-bottom: 2.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.ph-badge {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; padding: 0.28rem 0.6rem; border-radius: 2px;
+  white-space: nowrap; margin-top: 0.6rem; flex-shrink: 0;
+}
+.phase-1 .ph-badge { background: var(--blue-wash); color: var(--blue); }
+.phase-2 .ph-badge { background: var(--amber-wash); color: var(--amber); }
+.phase-3 .ph-badge { background: var(--sage-wash); color: var(--sage); }
+.ph-title {
+  font-family: var(--fd); font-size: 1.95rem; font-weight: 700;
+  letter-spacing: -0.025em; line-height: 1.15; color: var(--ink);
+}
+.ph-sub { font-size: 0.82rem; color: var(--ink-soft); margin-top: 0.3rem; font-weight: 400; }
+
+/* ── STEPS ── */
+.steps { display: flex; flex-direction: column; gap: 1rem; }
+.step {
+  display: grid; grid-template-columns: 50px 1fr;
+  background: var(--surf); border: 1px solid var(--border);
+  border-radius: var(--rl); overflow: hidden; transition: opacity 0.3s ease;
+}
+.step.done { opacity: 0.58; }
+.step.done .st-title { text-decoration: line-through; text-decoration-color: var(--ink-soft); }
+.step-left {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 1.25rem 0; gap: 0.6rem;
+  border-right: 1px solid var(--border); background: var(--g);
+}
+.st-num {
+  font-family: var(--fd); font-size: 0.68rem; font-weight: 700;
+  color: var(--ink-soft); font-variant-numeric: tabular-nums; line-height: 1;
+}
+.chk {
+  width: 24px; height: 24px; border-radius: 50%;
+  border: 2px solid var(--border); background: var(--g);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: border-color 0.2s, background 0.2s;
+  flex-shrink: 0; -webkit-appearance: none; appearance: none;
+}
+.chk:hover { border-color: var(--sage); }
+.chk:focus-visible { outline: 2px solid var(--sage); outline-offset: 3px; }
+.step.done .chk { background: var(--sage); border-color: var(--sage); }
+.chk-icon { opacity: 0; transition: opacity 0.15s; pointer-events: none; }
+.step.done .chk-icon { opacity: 1; }
+.step-body { padding: 1.25rem 1.5rem; }
+.st-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.375rem; line-height: 1.4; }
+.st-desc { font-size: 0.855rem; color: var(--ink-mid); line-height: 1.75; max-width: 58ch; margin-bottom: 1rem; }
+
+/* Action box */
+.abox { background: var(--g); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 0.75rem; }
+.abox-lbl {
+  display: block; padding: 0.38rem 0.875rem;
+  background: var(--surf); border-bottom: 1px solid var(--border);
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-soft);
+}
+.abox-body { padding: 0.875rem 1rem; font-size: 0.855rem; color: var(--ink-mid); line-height: 1.75; }
+.abox-body p + p { margin-top: 0.5rem; }
+.abox-body ol, .abox-body ul { padding-left: 1.375rem; display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.25rem; }
+.abox-body strong { color: var(--ink); font-weight: 600; }
+
+/* Template block */
+.tpl { background: var(--surf); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; margin-bottom: 0.75rem; }
+.tpl-lbl {
+  display: block; padding: 0.38rem 0.875rem;
+  background: var(--g); border-bottom: 1px solid var(--border);
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.14em; color: var(--ink-soft);
+}
+.tpl-body { padding: 0.875rem 1rem; font-family: Georgia, 'Times New Roman', serif; font-size: 0.855rem; color: var(--ink-mid); line-height: 1.8; white-space: pre-wrap; }
+
+/* Tip bar */
+.tip { display: flex; gap: 0.5rem; align-items: flex-start; padding: 0.6rem 0.875rem; border-radius: var(--r); font-size: 0.8rem; line-height: 1.55; margin-bottom: 0.5rem; }
+.tip-ico { flex-shrink: 0; font-weight: 700; }
+.t-blue  { background: var(--blue-wash);  color: var(--blue-dim); }
+.t-amber { background: var(--amber-wash); color: var(--amber-dim); }
+.t-sage  { background: var(--sage-wash);  color: var(--sage-dim); }
+
+/* Comparison / platform table */
+.cmp { overflow-x: auto; margin-bottom: 0.75rem; -webkit-overflow-scrolling: touch; }
+.cmp table { width: 100%; min-width: 460px; border-collapse: collapse; font-size: 0.8rem; }
+.cmp th {
+  text-align: left; padding: 0.5rem 0.75rem;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--ink-soft); border-bottom: 1px solid var(--border); background: var(--surf);
+}
+.cmp td { padding: 0.5rem 0.75rem; color: var(--ink-mid); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+.cmp tr:last-child td { border-bottom: none; }
+.cmp td:first-child { font-weight: 600; color: var(--ink); }
+.rec {
+  display: inline-block; font-size: 0.58rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.12rem 0.38rem; border-radius: 2px;
+  background: var(--sage-wash); color: var(--sage);
+  vertical-align: middle; margin-left: 0.35rem; line-height: 1.8;
+}
+.hot {
+  display: inline-block; font-size: 0.58rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.12rem 0.38rem; border-radius: 2px;
+  background: var(--amber-wash); color: var(--amber);
+  vertical-align: middle; margin-left: 0.35rem; line-height: 1.8;
+}
+
+/* Quote / insight block */
+.quote {
+  margin: 0.75rem 0;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid var(--sage);
+  background: var(--sage-wash);
+  border-radius: 0 var(--r) var(--r) 0;
+}
+.quote p { font-family: var(--fd); font-style: italic; font-size: 0.95rem; color: var(--ink-mid); line-height: 1.65; }
+.quote cite { display: block; font-family: var(--fb); font-style: normal; font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-soft); margin-top: 0.5rem; }
+
+/* ── CLOSING ── */
+.closing {
+  margin-top: 5rem; padding: 3.5rem;
+  background: var(--blue-wash); border-radius: var(--rl); text-align: center;
+}
+.closing h2 {
+  font-family: var(--fd); font-size: 2.25rem; font-weight: 300; font-style: italic;
+  letter-spacing: -0.025em; color: var(--ink); margin-bottom: 1rem;
+}
+.closing h2 b { font-style: normal; font-weight: 700; color: var(--blue); }
+.closing p { font-size: 0.9rem; color: var(--ink-mid); max-width: 42ch; margin: 0 auto; line-height: 1.85; }
+
+/* ── MOBILE ── */
+@media (max-width: 800px) {
+  .wrap { grid-template-columns: 1fr; }
+  .sidebar { display: none; }
+  .intro h1 { font-size: 2rem; }
+  .ph-title { font-size: 1.5rem; }
+  .step { grid-template-columns: 44px 1fr; }
+  .closing { padding: 2rem; }
+  .closing h2 { font-size: 1.6rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; }
+  html { scroll-behavior: auto; }
+}
+
+/* ── JOURNEY MEMORY PANEL (sidebar) ── */
+.journey-panel {
+  margin-top: 0.5rem;
+  padding: 0.75rem 0.75rem 0.625rem;
+  background: var(--sage-wash);
+  border: 1px solid var(--sage-dim);
+  border-radius: var(--rl);
+}
+.journey-panel-lbl {
+  display: flex; align-items: center; gap: 0.35rem;
+  font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.12em;
+  color: var(--sage); margin-bottom: 0.5rem;
+}
+.journey-cell {
+  font-size: 0.72rem; color: var(--ink-mid);
+  padding: 0.35rem 0; line-height: 1.45;
+  border-top: 1px solid var(--sage-dim);
+}
+.journey-cell-lbl {
+  font-weight: 600; font-size: 0.62rem;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--sage); display: block; margin-bottom: 0.1rem;
+}
+.journey-cell-val {
+  color: var(--ink-mid); font-size: 0.72rem; line-height: 1.4;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.journey-empty { font-size: 0.72rem; color: var(--ink-soft); font-style: italic; }
+
+/* ── STEP 9 PROFILE SAVE ── */
+.profile-save-area {
+  margin-top: 0.875rem;
+  background: var(--sage-wash);
+  border: 1px solid var(--sage-dim);
+  border-radius: var(--rl);
+  padding: 1rem 1.125rem;
+}
+.profile-save-lbl {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.1em;
+  color: var(--sage); margin-bottom: 0.5rem; display: block;
+}
+.profile-textarea {
+  width: 100%; resize: vertical;
+  font-family: var(--fb); font-size: 0.85rem;
+  background: var(--g); color: var(--ink);
+  border: 1px solid var(--border);
+  border-radius: var(--r); padding: 0.75rem;
+  line-height: 1.6; min-height: 90px;
+}
+.profile-textarea:focus { outline: 2px solid var(--sage); outline-offset: -1px; }
+.profile-save-btn {
+  margin-top: 0.5rem; display: inline-block;
+  background: var(--sage); color: #fff;
+  border: none; border-radius: var(--r);
+  font-family: var(--fb); font-size: 0.8rem; font-weight: 600;
+  padding: 0.45rem 1.25rem; cursor: pointer; letter-spacing: 0.03em;
+}
+.profile-save-btn:hover { opacity: 0.88; }
+.profile-saved-notice {
+  font-size: 0.75rem; color: var(--sage);
+  margin-top: 0.35rem; display: none;
+}
+</style>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<div class="hd">
+  <div class="hd-in">
+    <span class="brand"><span style="font-size:0.7em;opacity:0.7;letter-spacing:0.06em;font-family:var(--fb);font-weight:500;">FIT BODIES BY MK</span> <span style="color:var(--ink-soft);font-weight:300;margin:0 0.3em;">·</span> First Product Roadmap</span>
+    <div class="prog-wrap">
+      <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+      <span class="prog-text" id="progText">0 of 15 steps complete</span>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ LAYOUT ══════════════════ -->
+<div class="wrap">
+
+  <!-- ── SIDEBAR ── -->
+  <nav class="sidebar" aria-label="Guide navigation">
+    <div class="nav-grp">
+      <span class="nav-phase-lbl p1">Phase 1 — Your Offer</span>
+      <ul>
+        <li id="nav-1"><a href="#s1"><span class="nav-dot"></span>List what you know</a></li>
+        <li id="nav-2"><a href="#s2"><span class="nav-dot"></span>Find the problem</a></li>
+        <li id="nav-3"><a href="#s3"><span class="nav-dot"></span>Choose offer type</a></li>
+        <li id="nav-4"><a href="#s4"><span class="nav-dot"></span>Test idea with AI</a></li>
+      </ul>
+    </div>
+    <div class="nav-grp">
+      <span class="nav-phase-lbl p2">Phase 2 — Get Paid</span>
+      <ul>
+        <li id="nav-5"><a href="#s5"><span class="nav-dot"></span>Choose a platform</a></li>
+        <li id="nav-6"><a href="#s6"><span class="nav-dot"></span>Create Gumroad account</a></li>
+        <li id="nav-7"><a href="#s7"><span class="nav-dot"></span>List your first product</a></li>
+        <li id="nav-8"><a href="#s8"><span class="nav-dot"></span>Connect bank account</a></li>
+      </ul>
+    </div>
+    <div class="nav-grp">
+      <span class="nav-phase-lbl p3">Phase 3 — Find Customers</span>
+      <ul>
+        <li id="nav-9"><a href="#s9"><span class="nav-dot"></span>Write customer profile</a></li>
+        <li id="nav-10"><a href="#s10"><span class="nav-dot"></span>Reach your warm network</a></li>
+        <li id="nav-11"><a href="#s11"><span class="nav-dot"></span>The new rules of reach</a></li>
+        <li id="nav-12"><a href="#s12"><span class="nav-dot"></span>Pick your platforms</a></li>
+        <li id="nav-13"><a href="#s13"><span class="nav-dot"></span>Your content playbook</a></li>
+        <li id="nav-14"><a href="#s14"><span class="nav-dot"></span>Your first video</a></li>
+        <li id="nav-15"><a href="#s15"><span class="nav-dot"></span>Make your first sale</a></li>
+      </ul>
+    </div>
+    <!-- Journey Memory -->
+    <div class="journey-panel" id="journeyPanel">
+      <div class="journey-panel-lbl">✦ Journey Memory</div>
+      <div id="journeyContent"><p class="journey-empty">Complete Steps 1, 4 &amp; 9 to build your memory.</p></div>
+    </div>
+  </nav>
+
+  <!-- ── MAIN ── -->
+  <main class="main">
+
+    <!-- API KEY BANNER -->
+    <div class="key-banner" id="keyBanner">
+      <div class="key-banner-text">
+        <strong>✦ Unlock AI Coaching</strong>
+        <p>Enter your Anthropic API key to activate the AI coaches in Steps 1, 4, 10, and 13. Your key is saved only in this browser — it's never stored anywhere else.</p>
+      </div>
+      <div class="key-input-row">
+        <input class="key-input" type="password" id="keyInput" placeholder="sk-ant-api03-…" autocomplete="off">
+        <button class="key-save-btn" onclick="saveKey()">Unlock →</button>
+      </div>
+    </div>
+
+    <!-- INTRO -->
+    <section class="intro">
+      <span class="intro-eye">A Step-by-Step Workshop Guide</span>
+      <h1>You already have<br><b>something worth selling.</b></h1>
+      <p class="intro-lead">This guide walks you through three things in order: figuring out what to offer, setting up a way to get paid, and finding your first customers — including how to use today's social platforms to reach people who've never heard of you.</p>
+      <div class="note">
+        <p><strong>How to use this guide:</strong> Work through each step in order. Check off a step when you've completed it — the progress bar at the top tracks where you are. Some steps have templates you can copy and paste. Don't skip ahead; each step builds on the last.</p>
+      </div>
+    </section>
+
+    <!-- BEFORE YOU BEGIN -->
+    <section class="byb">
+      <div class="byb-in">
+        <span class="byb-eye">Before You Begin</span>
+        <h2 class="byb-hd">You probably think you don't have enough to teach. You're almost certainly wrong.</h2>
+        <p class="byb-body">Most people who arrive at a guide like this carry a quiet belief that their experience doesn't count — that it's too ordinary, too niche, or that someone else already does it better. That belief is the real obstacle, and it has nothing to do with the quality of what you know.</p>
+        <p class="byb-body">Here's what's actually true: you've spent years — maybe decades — solving problems, learning systems, figuring things out the hard way. The people just behind you on that same path would pay to skip the struggle. That's all an offer is.</p>
+        <p class="byb-body">This guide doesn't ask you to invent something new. It asks you to look clearly at what you already know, find the person it helps most, and put it in front of them. Start there.</p>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PHASE 1
+    ════════════════════════════════════ -->
+    <section class="phase phase-1" id="phase-1">
+      <div class="ph-head">
+        <span class="ph-badge">Phase 1</span>
+        <div>
+          <h2 class="ph-title">Discover What to Sell</h2>
+          <p class="ph-sub">4 steps · Estimated time: 45–60 minutes</p>
+        </div>
+      </div>
+      <div class="steps">
+
+        <div class="step" id="s1" data-step="1">
+          <div class="step-left">
+            <span class="st-num">01</span>
+            <button class="chk" aria-label="Mark step 1 complete" onclick="toggleStep(1)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">List everything you already know how to do</h3>
+            <p class="st-desc">You don't need to invent something new. You need to look at what you've already mastered. Decades of work experience, life skills, and hard-won lessons are things people will pay to learn from you.</p>
+            <div class="abox">
+              <span class="abox-lbl">Your action</span>
+              <div class="abox-body">
+                <p>Open a notes app — or grab pen and paper — and write at least 5 answers to each of these three questions. Don't overthink it. Just write what comes to mind.</p>
+                <ol style="margin-top:0.75rem;">
+                  <li>What have you done professionally for five or more years?</li>
+                  <li>What do friends and family ask you for help with?</li>
+                  <li>What have you learned the hard way — that you wish someone had just told you?</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>Your best offer is usually hiding in something you consider "obvious" — because you've known it so long, you've forgotten others don't.</span></div>
+
+            <div class="ai-widget" id="ai-s1">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Skill Discovery — I'll ask you 4 questions, then show you your options</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s1-chat">
+                <div class="ai-empty" id="ai-s1-empty">
+                  <p>Rather than staring at a blank page, let me interview you. I'll ask 4 short questions about your life and work — then show you a list of real offer ideas based on what you tell me.</p>
+                  <button class="ai-start-btn" onclick="aiS1Start()">Start the interview →</button>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s1-input" style="display:none">
+                <textarea class="ai-textarea" id="ai-s1-text" placeholder="Type your answer…" rows="2" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS1Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s1-btn" onclick="aiS1Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="step" id="s2" data-step="2">
+          <div class="step-left">
+            <span class="st-num">02</span>
+            <button class="chk" aria-label="Mark step 2 complete" onclick="toggleStep(2)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Find the problem that matches your skill</h3>
+            <p class="st-desc">People don't buy skills — they buy relief from a specific frustration. Your job here is to connect what you know with a problem someone else is losing sleep over.</p>
+            <div class="abox">
+              <span class="abox-lbl">Your action</span>
+              <div class="abox-body"><p>Take one item from your Step 1 list and fill in this sentence:</p></div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Fill in the blank</span>
+              <div class="tpl-body">"I help [type of person] who [describe their struggle]
+to [the result they want]
+— without [the thing they're afraid of]."</div>
+            </div>
+            <div class="abox">
+              <span class="abox-lbl">Example</span>
+              <div class="abox-body"><p>"I help recently retired women who feel anxious about their finances to understand and manage their money — without needing to hire a financial advisor."</p></div>
+            </div>
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>The more specific, the better. "I help recently retired women who feel anxious opening their bank statements" is something people recognize themselves in — and respond to.</span></div>
+          </div>
+        </div>
+
+        <div class="step" id="s3" data-step="3">
+          <div class="step-left">
+            <span class="st-num">03</span>
+            <button class="chk" aria-label="Mark step 3 complete" onclick="toggleStep(3)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Choose your offer type — pick just one to start</h3>
+            <p class="st-desc">There are three simple ways to package what you know. You only need to pick one. You can always add more later once you understand what your customers want.</p>
+            <div class="cmp">
+              <table>
+                <thead><tr><th>Offer Type</th><th>What it looks like</th><th>Best if you…</th></tr></thead>
+                <tbody>
+                  <tr><td>1-on-1 Coaching <span class="rec">Recommended</span></td><td>You meet with someone on Zoom and guide them through their problem</td><td>Enjoy talking with people and helping them solve problems in real time</td></tr>
+                  <tr><td>Done-For-You Service</td><td>You do the task for them (editing, organizing, writing, bookkeeping)</td><td>Have a skill that requires knowledge most people simply don't have</td></tr>
+                  <tr><td>Digital Guide or Workbook</td><td>A written document or short course they follow on their own</td><td>Want to create something once and sell it many times</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>For most beginners, start with 1-on-1 coaching. You need zero technical setup, you learn what customers actually want, and people pay more for your time than for a document.</span></div>
+          </div>
+        </div>
+
+        <div class="step" id="s4" data-step="4">
+          <div class="step-left">
+            <span class="st-num">04</span>
+            <button class="chk" aria-label="Mark step 4 complete" onclick="toggleStep(4)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Run your idea by an AI tool — takes 3 minutes</h3>
+            <p class="st-desc">Before you build anything, let an AI give you a gut-check. This helps you see your idea through a customer's eyes and spot anything that needs adjusting.</p>
+            <div class="abox">
+              <span class="abox-lbl">Your action</span>
+              <div class="abox-body"><p>Paste the offer sentence you wrote in Step 2 into the AI coach below, then add 2–3 sentences describing who your customer is. The AI will challenge your idea, find its weak spots, and help you sharpen it — right here on this page.</p></div>
+            </div>
+
+            <div class="ai-widget w-amber" id="ai-s4">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Idea Validator — paste your offer and I'll pressure-test it</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s4-chat">
+                <div class="ai-empty" id="ai-s4-empty">
+                  <p>Paste your offer sentence from Step 2 here, plus a quick description of who it's for. I'll challenge it like a sceptical customer would — then help you make it stronger.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Example: <em>"I help recently retired women who feel anxious about their finances to manage their money simply — without a financial advisor. My customer is 58–68, recently stopped working, and has never invested before."</em></p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s4-input">
+                <textarea class="ai-textarea" id="ai-s4-text" placeholder="Paste your offer sentence + describe your customer…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS4Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s4-btn" onclick="aiS4Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>If the AI finds a weak spot in your idea, that's valuable — it's better to know now than after you've built something. Use the feedback to tighten your offer before moving to Phase 2.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PHASE 2
+    ════════════════════════════════════ -->
+    <section class="phase phase-2" id="phase-2">
+      <div class="ph-head">
+        <span class="ph-badge">Phase 2</span>
+        <div>
+          <h2 class="ph-title">Set Up to Accept Payment</h2>
+          <p class="ph-sub">4 steps · Estimated time: 30–45 minutes</p>
+        </div>
+      </div>
+      <div class="steps">
+
+        <div class="step" id="s5" data-step="5">
+          <div class="step-left">
+            <span class="st-num">05</span>
+            <button class="chk" aria-label="Mark step 5 complete" onclick="toggleStep(5)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Choose where you'll accept payment</h3>
+            <p class="st-desc">You need a way for customers to pay you online. The good news: you do not need a website. These platforms give you a payment link and a product page — everything in one place.</p>
+            <div class="cmp">
+              <table>
+                <thead><tr><th>Platform</th><th>Best for</th><th>Cost</th></tr></thead>
+                <tbody>
+                  <tr><td>Gumroad <span class="rec">Best to start</span></td><td>Coaches, guides, digital products — simplest setup, clean checkout</td><td>Free to start; 10% fee per sale</td></tr>
+                  <tr><td>Stan.store</td><td>Coaches who plan to grow — has email list + booking built in</td><td>$29/month after free trial</td></tr>
+                  <tr><td>PayPal</td><td>Sending invoices directly — less professional-looking but widely trusted</td><td>Free; ~3% fee per sale</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Steps 6–8 walk you through Gumroad. If you choose a different platform, the concepts are the same — look for "create product," "set price," and "connect bank account" in their menus.</span></div>
+          </div>
+        </div>
+
+        <div class="step" id="s6" data-step="6">
+          <div class="step-left">
+            <span class="st-num">06</span>
+            <button class="chk" aria-label="Mark step 6 complete" onclick="toggleStep(6)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Create your Gumroad account</h3>
+            <p class="st-desc">Gumroad is a simple platform where you list your offer, share a link, and get paid — no website required, no technical skills needed. The whole signup takes about five minutes.</p>
+            <div class="abox">
+              <span class="abox-lbl">Step by step</span>
+              <div class="abox-body">
+                <ol>
+                  <li>Open your browser and go to <strong>gumroad.com</strong></li>
+                  <li>Click the <strong>"Start Selling"</strong> button</li>
+                  <li>Enter your name, email address, and a password you'll remember</li>
+                  <li>Open your email inbox and click the confirmation link Gumroad sends you</li>
+                  <li>You'll arrive at your Gumroad dashboard — you're now set up to sell</li>
+                  <li>Click <strong>Edit Profile</strong> and add a short one-sentence bio about what you do</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Use your real first name and a professional-sounding email address. Something like <em>yourname@gmail.com</em> works perfectly well.</span></div>
+          </div>
+        </div>
+
+        <div class="step" id="s7" data-step="7">
+          <div class="step-left">
+            <span class="st-num">07</span>
+            <button class="chk" aria-label="Mark step 7 complete" onclick="toggleStep(7)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Create your first product listing</h3>
+            <p class="st-desc">This is the link you'll share when someone asks how to work with you. Clear and honest is what matters. You can always update it later.</p>
+            <div class="abox">
+              <span class="abox-lbl">Step by step</span>
+              <div class="abox-body">
+                <ol>
+                  <li>From your Gumroad dashboard, click <strong>"New Product"</strong></li>
+                  <li>Choose <strong>"Service"</strong> as the product type (for a coaching session)</li>
+                  <li>Give it a clear name — specific beats clever:<br><em>"60-Minute Personal Finance Review Session"</em> works better than <em>"Coaching Call"</em></li>
+                  <li>Set your price. For 1-on-1 coaching, <strong>$97–$197</strong> is a reasonable starting point</li>
+                  <li>Write 3–5 sentences in the description: who this is for, what they'll walk away with, and what happens after they buy (e.g., "You'll receive a booking link within 24 hours")</li>
+                  <li>Click <strong>"Publish"</strong> and copy your product link</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Don't let perfectionism stall you. A live listing you update later beats a perfect one that never launches.</span></div>
+          </div>
+        </div>
+
+        <div class="step" id="s8" data-step="8">
+          <div class="step-left">
+            <span class="st-num">08</span>
+            <button class="chk" aria-label="Mark step 8 complete" onclick="toggleStep(8)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Connect your bank account to receive payments</h3>
+            <p class="st-desc">When someone buys from you, Gumroad collects the money and sends it to your bank account. You need to tell it where to send your earnings.</p>
+            <div class="abox">
+              <span class="abox-lbl">Step by step</span>
+              <div class="abox-body">
+                <ol>
+                  <li>In your Gumroad dashboard, click your profile icon in the top right corner</li>
+                  <li>Select <strong>Settings</strong> from the dropdown</li>
+                  <li>Click <strong>Payouts</strong> in the left sidebar</li>
+                  <li>Click <strong>"Add a Bank Account"</strong></li>
+                  <li>Enter your bank's <strong>routing number</strong> and your <strong>account number</strong> — find both at the bottom of a paper check, or in your bank's app under "Account Details"</li>
+                  <li>Save your information</li>
+                </ol>
+                <p style="margin-top:0.75rem;"><strong>What to expect:</strong> Your first actual payout typically arrives 7–21 days after your first sale. This delay is normal and won't repeat once your account is established.</p>
+              </div>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Don't have your routing number? Call your bank's customer service line or search "<em>[your bank name] routing number</em>" — it's public information.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════
+         PHASE 3
+    ════════════════════════════════════ -->
+    <section class="phase phase-3" id="phase-3">
+      <div class="ph-head">
+        <span class="ph-badge">Phase 3</span>
+        <div>
+          <h2 class="ph-title">Find Your First Customers</h2>
+          <p class="ph-sub">7 steps · Estimated time: Ongoing — start this week</p>
+        </div>
+      </div>
+      <div class="steps">
+
+        <!-- Step 9 -->
+        <div class="step" id="s9" data-step="9">
+          <div class="step-left">
+            <span class="st-num">09</span>
+            <button class="chk" aria-label="Mark step 9 complete" onclick="toggleStep(9)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Write your customer profile</h3>
+            <p class="st-desc">You can't find someone if you don't know who you're looking for. This exercise takes 10 minutes and makes every step that follows easier — your posts, your messages, your conversations.</p>
+            <div class="abox">
+              <span class="abox-lbl">Your action — answer these 5 questions in writing</span>
+              <div class="abox-body">
+                <ol>
+                  <li><strong>Who is this person?</strong> — Age range, life situation (e.g., "women in their 50s who recently left their corporate job")</li>
+                  <li><strong>What is the ONE problem keeping them up at night</strong> related to what you offer?</li>
+                  <li><strong>Where do they spend time online?</strong> — Facebook groups? TikTok? LinkedIn? YouTube?</li>
+                  <li><strong>What have they already tried</strong> that didn't fully work for them?</li>
+                  <li><strong>What does their life look like after you help them?</strong> — Be as specific and visual as you can</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>If you're not sure, think of one specific real person you know who could use your help. Build the whole profile around them. You can adjust as you learn from real conversations.</span></div>
+
+            <div class="profile-save-area">
+              <span class="profile-save-lbl">✦ Save your customer profile — coaches will use it automatically</span>
+              <textarea class="profile-textarea" id="s9-profile" placeholder="Example: Women 50–65 who recently retired and want to lose weight without extreme diets. They've tried gym memberships that didn't stick. They spend time on Facebook and YouTube. After working with me, they feel confident in their body and have a sustainable routine." rows="4"></textarea>
+              <button class="profile-save-btn" onclick="saveCustomerProfile()">Save to memory →</button>
+              <p class="profile-saved-notice" id="profileSavedNotice">✓ Saved — your AI coaches will now know your customer</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 10 -->
+        <div class="step" id="s10" data-step="10">
+          <div class="step-left">
+            <span class="st-num">10</span>
+            <button class="chk" aria-label="Mark step 10 complete" onclick="toggleStep(10)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Your first customers are already in your phone</h3>
+            <p class="st-desc">Before you post anything publicly, reach out personally to people who already know and trust you. This is the fastest path to a first sale — and the step most people skip out of unnecessary embarrassment. A warm, personal message is not pushy.</p>
+            <div class="abox">
+              <span class="abox-lbl">Your action</span>
+              <div class="abox-body">
+                <p>Make a list of <strong>10 people</strong> who might need your offer or know someone who does. Think: former coworkers, neighbors, church members, Facebook friends, LinkedIn connections.</p>
+                <p>Then send each of them a message like this — as a text, Facebook message, or DM:</p>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Message template</span>
+              <div class="tpl-body">Hey [Name], hope you're doing well!
+
+I recently started offering [brief description of what you do] for [describe your ideal customer in 2–3 words].
+
+I'm looking for a few people to work with as I get started — and I thought of you. If you or anyone you know might benefit from this, I'd love to have a quick chat. No pressure at all.
+
+Either way, hope life is treating you well!</div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Send this as a personal text or DM — not a mass email. Personal channels get read; bulk messages get ignored.</span></div>
+
+            <div class="ai-widget w-sage" id="ai-s10">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Sales Reply Coach — paste what they said, get what to say back</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s10-chat">
+                <div class="ai-empty" id="ai-s10-empty">
+                  <p>Someone replied to your outreach — or you're not sure how to open the conversation. Paste exactly what they said (or describe the situation) and I'll give you a word-for-word reply you can send right now.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Example: <em>"She replied 'sounds interesting, tell me more' — what do I say?"</em> or <em>"He said he's tried things like this before and they didn't work."</em></p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s10-input">
+                <textarea class="ai-textarea" id="ai-s10-text" placeholder="Paste what they said, or describe the situation…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS10Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s10-btn" onclick="aiS10Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>The goal of every reply is not to close the sale — it's to earn the next message. Ask one question. Be curious, not pushy.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 11 — NEW: Interest Media -->
+        <div class="step" id="s11" data-step="11">
+          <div class="step-left">
+            <span class="st-num">11</span>
+            <button class="chk" aria-label="Mark step 11 complete" onclick="toggleStep(11)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Understand the new rules — followers don't matter anymore</h3>
+            <p class="st-desc">Before you post anything online, you need to understand how social platforms actually work in 2026 — because the rules changed, and the change is completely in your favor.</p>
+            <div class="quote">
+              <p>"We do not live in 'social media' anymore. You're getting content based on what you're currently interested in — not who you follow."</p>
+              <cite>— Gary Vaynerchuk, 2026</cite>
+            </div>
+            <div class="abox">
+              <span class="abox-lbl">What this means for you</span>
+              <div class="abox-body">
+                <p>Platforms like TikTok, Instagram Reels, and Snapchat Spotlight are now <strong>interest-based</strong>. Their algorithms show your content to people who are interested in your topic — not just your followers. This means:</p>
+                <ul style="margin-top:0.6rem;">
+                  <li>You do <strong>not</strong> need thousands of followers to reach thousands of people</li>
+                  <li>A genuinely useful first post can reach your ideal customer on day one</li>
+                  <li>Your age, follower count, and technical skills are not the barrier you think they are</li>
+                </ul>
+                <p style="margin-top:0.75rem;">Gary proved this by launching a brand new TikTok account with zero followers and getting <strong>8.2 million organic views</strong> on the first post. The content was good and relevant. That's the only thing that mattered.</p>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Read this step twice if you need to. The mindset shift — from "I need an audience first" to "good content finds its own audience" — is the most important thing in Phase 3.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 12 — NEW: Platform selection -->
+        <div class="step" id="s12" data-step="12">
+          <div class="step-left">
+            <span class="st-num">12</span>
+            <button class="chk" aria-label="Mark step 12 complete" onclick="toggleStep(12)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Pick your platforms — one for reach, one for community</h3>
+            <p class="st-desc">You don't need to be everywhere. You need to be consistent in two places: one short-form video platform to reach new people, and one community space to build relationships. Choose based on where your customer already is.</p>
+            <div class="abox">
+              <span class="abox-lbl">Short-form video platforms — pick ONE</span>
+              <div class="abox-body">
+                <div class="cmp" style="margin:0;">
+                  <table>
+                    <thead><tr><th>Platform</th><th>Why it matters in 2026</th><th>Best if your customer is…</th></tr></thead>
+                    <tbody>
+                      <tr>
+                        <td>Snapchat Spotlight <span class="hot">Underpriced</span></td>
+                        <td>Gary's top 2026 pick — high algorithm boost, very low creator competition right now. Same opportunity TikTok was in 2019.</td>
+                        <td>Under 45, or anyone you want to reach before the platform gets crowded</td>
+                      </tr>
+                      <tr>
+                        <td>TikTok <span class="rec">Most reach</span></td>
+                        <td>Still the most powerful discovery algorithm. Age 35–60 is one of the fastest-growing user groups. Very forgiving to new creators.</td>
+                        <td>Anyone. Especially strong if your topic is life advice, money, health, or business</td>
+                      </tr>
+                      <tr>
+                        <td>Instagram Reels</td>
+                        <td>Same short-form video format as TikTok. You can cross-post the exact same video here. Strong for slightly older audiences.</td>
+                        <td>45–60 demographic, especially women; lifestyle, wellness, coaching topics</td>
+                      </tr>
+                      <tr>
+                        <td>YouTube Shorts</td>
+                        <td>Long-term play. YouTube Shorts are indexed by Google and used to train Google's AI — your content builds compounding authority over time.</td>
+                        <td>Educational topics; customers who search Google for solutions</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+            <div class="abox" style="margin-top:0.75rem;">
+              <span class="abox-lbl">Community platform — add ONE</span>
+              <div class="abox-body">
+                <p>Facebook Groups are still the best place for deeper conversations with 45+ audiences. LinkedIn works well if your customers are professionals. Choose whichever your customer profile from Step 9 points to.</p>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Pick ONE video platform and ONE community platform — that's two total. Starting on one platform done consistently beats starting on five platforms done poorly.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 13 — NEW: Content playbook -->
+        <div class="step" id="s13" data-step="13">
+          <div class="step-left">
+            <span class="st-num">13</span>
+            <button class="chk" aria-label="Mark step 13 complete" onclick="toggleStep(13)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Your content playbook — jabs first, hooks occasionally</h3>
+            <p class="st-desc">Gary Vaynerchuk built his entire philosophy around one principle: give away value before you ask for anything in return. He calls this "jabs and hooks" — and it works because it matches how trust actually forms between people.</p>
+            <div class="abox">
+              <span class="abox-lbl">The framework</span>
+              <div class="abox-body">
+                <p><strong>Jabs</strong> = free value. Tips, insights, answers to common questions, short lessons, behind-the-scenes moments. No mention of your offer. Just be genuinely helpful.</p>
+                <p style="margin-top:0.5rem;"><strong>Hooks</strong> = your offer. "Here's how to work with me." "Link in bio." "Book a session." Direct and clear.</p>
+                <p style="margin-top:0.5rem;"><strong>The ratio:</strong> For every 1 hook, post 4–5 jabs. Most new entrepreneurs do it backwards — they only post when they want to sell something, and people tune it out.</p>
+              </div>
+            </div>
+            <div class="abox">
+              <span class="abox-lbl">Three rules that matter more than anything else</span>
+              <div class="abox-body">
+                <ol>
+                  <li><strong>Post organically first, boost later.</strong> Never spend money promoting a post until you've seen it perform for free. If it gets no traction without a budget, an ad budget won't fix it. Only boost content that's already resonating.</li>
+                  <li><strong>Consistency beats perfection.</strong> One post every day beats one perfect post every month. Gary produces 500+ pieces of content monthly for his own brand. You don't need to hit that number — but showing up regularly is non-negotiable.</li>
+                  <li><strong>Use AI to start, your voice to finish.</strong> Use Claude or ChatGPT to generate your first drafts. Then read them out loud. Change every sentence that doesn't sound like you. Your imperfect, authentic voice is more powerful than polished but generic copy.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">AI prompt — generate your first 7 posts</span>
+              <div class="tpl-body">I'm starting a business offering [your offer] for [your customer description].
+
+Please write me 7 short social media posts I can publish this week.
+Make 5 of them "jabs" — pure value, no selling, one useful tip each.
+Make 2 of them "hooks" — a soft invitation to work with me.
+
+For each post:
+— Maximum 4 sentences
+— Sound like a warm, experienced real person talking to a friend
+— End with either a question (for jabs) or a clear next step (for hooks)
+
+Platform: [TikTok / Instagram / Facebook — pick yours]</div>
+            </div>
+            <div class="ai-widget w-sage" id="ai-s13">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Content Idea Generator — describe your offer, get 10 post ideas</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s13-chat">
+                <div class="ai-empty" id="ai-s13-empty">
+                  <p>Tell me what you're selling and who it's for. I'll generate 10 jab-style post ideas — pure value, no selling — that you can use on TikTok, Instagram, or Snapchat this week.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s13-input">
+                <textarea class="ai-textarea" id="ai-s13-text" placeholder="Example: I teach recently retired women how to manage their money without a financial advisor. My customer is 60–70, nervous about finances, active on Facebook and starting to use TikTok." rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS13Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s13-btn" onclick="aiS13Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Read every post out loud before you publish it. If it sounds like an advertisement, it's a hook — not a jab. Rewrite it to lead with the useful thing, not the sale.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 14 — NEW: First video -->
+        <div class="step" id="s14" data-step="14">
+          <div class="step-left">
+            <span class="st-num">14</span>
+            <button class="chk" aria-label="Mark step 14 complete" onclick="toggleStep(14)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Record your first short-form video — simpler than you think</h3>
+            <p class="st-desc">Short-form video (TikTok, Instagram Reels, Snapchat Spotlight) is the single most powerful way to reach new people for free in 2026. Many people feel intimidated by this — but the videos that work best are not polished or produced. They're honest, direct, and useful.</p>
+            <div class="abox">
+              <span class="abox-lbl">The format that works — no editing required</span>
+              <div class="abox-body">
+                <p>Pick up your phone. Find a window with natural light. Point the camera at your face. Record 30–60 seconds using this structure:</p>
+                <ol style="margin-top:0.6rem;">
+                  <li><strong>Hook (first 2–3 seconds):</strong> Start with a bold statement or question that your customer will immediately recognize. The first 3 seconds decide whether anyone watches the rest.</li>
+                  <li><strong>Value (20–40 seconds):</strong> Give the actual insight. One clear tip. No filler. No long introduction about who you are.</li>
+                  <li><strong>Close (5 seconds):</strong> A soft invitation — "If you want help with this, my link is in my bio."</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Script template — fill in for your topic</span>
+              <div class="tpl-body">[Hook]
+"The #1 mistake [people like your customer] make when trying to [your topic] is..."
+
+[Value — give the real answer]
+"Most people think you need to [common wrong assumption]. But actually, what works is [your insight]. Here's why..."
+
+[Close]
+"If you're dealing with this and want some help, I work with people one-on-one — link is in my bio."</div>
+            </div>
+            <div class="abox">
+              <span class="abox-lbl">Technical setup — keep it simple</span>
+              <div class="abox-body">
+                <ul>
+                  <li><strong>Phone:</strong> Any smartphone from the last five years works perfectly</li>
+                  <li><strong>Light:</strong> Sit facing a window. Natural light is all you need.</li>
+                  <li><strong>Sound:</strong> Find a quiet room. Your phone's microphone is fine to start.</li>
+                  <li><strong>Editing:</strong> Do not edit. Post the raw video. Your first 10 videos are practice. Authenticity outperforms production quality on these platforms every time.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>The "imperfect but real" video almost always outperforms the heavily edited one. People follow people, not productions. Press record, say the useful thing, and post it as-is.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 15 — First sale -->
+        <div class="step" id="s15" data-step="15">
+          <div class="step-left">
+            <span class="st-num">15</span>
+            <button class="chk" aria-label="Mark step 15 complete" onclick="toggleStep(15)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Make your first sale — then ask for a testimonial</h3>
+            <p class="st-desc">Everything before this was preparation. This is the step that makes you an entrepreneur. When someone says yes, here's exactly what to do — and what to ask for afterward.</p>
+            <div class="abox">
+              <span class="abox-lbl">When someone expresses interest</span>
+              <div class="abox-body">
+                <ol>
+                  <li>Reply quickly and warmly — enthusiasm from you breeds confidence in them</li>
+                  <li>Send them your Gumroad product link:<br><em>"Just click this link, complete checkout, and I'll reach out within 24 hours to schedule our session."</em></li>
+                  <li>Deliver your very best work — this person is also your first case study</li>
+                  <li>A day or two after the session, send this message:</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Testimonial request message</span>
+              <div class="tpl-body">Hi [Name],
+
+I really enjoyed our session — thank you for trusting me with this.
+
+If you found it helpful, would you be willing to send me a short note about your experience? Even 2–3 sentences would mean a great deal. I share these with people who are thinking about working with me.
+
+No rush — only if it feels right to you!</div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Screenshot their reply and save it. Your first testimonial is worth more than any advertisement. Add it to your Gumroad listing and share it (with their permission) in your videos and posts.</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <div class="closing">
+      <h2>You're more ready<br>than <b>you think.</b></h2>
+      <p>Every person who built something meaningful online started exactly where you are — with a skill, a question, and the courage to try. The only difference between then and now is that you have a clearer map. Go take the first step.</p>
+    </div>
+
+  </main>
+</div>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer style="text-align:center;padding:2.5rem 1.5rem 3rem;border-top:1px solid var(--border);margin-top:2rem;">
+  <p style="font-family:var(--fd);font-size:1.15rem;font-weight:600;letter-spacing:0.01em;color:var(--ink);margin-bottom:0.25rem;">Fit Bodies by MK</p>
+  <p style="font-size:0.8rem;color:var(--ink-soft);">Coaching guide · Not for redistribution</p>
+</footer>
+
+<script>
+  const TOTAL = 15;
+
+  function getStates() {
+    try { return JSON.parse(localStorage.getItem('fpr-steps') || '{}'); }
+    catch(e) { return {}; }
+  }
+
+  function saveStates(states) {
+    try { localStorage.setItem('fpr-steps', JSON.stringify(states)); } catch(e) {}
+  }
+
+  function toggleStep(n) {
+    var states = getStates();
+    states[n] = !states[n];
+    saveStates(states);
+    applyStates(states);
+  }
+
+  function applyStates(states) {
+    var done = 0;
+    for (var i = 1; i <= TOTAL; i++) {
+      var stepEl = document.getElementById('s' + i);
+      var navEl  = document.getElementById('nav-' + i);
+      var checked = !!states[i];
+      if (checked) done++;
+      if (stepEl) stepEl.classList.toggle('done', checked);
+      if (navEl)  navEl.classList.toggle('nav-done', checked);
+    }
+    var pct  = Math.round((done / TOTAL) * 100);
+    var fill = document.getElementById('progFill');
+    var text = document.getElementById('progText');
+    if (fill) fill.style.width = pct + '%';
+    if (text) text.textContent = done + ' of ' + TOTAL + ' steps complete';
+  }
+
+  document.querySelectorAll('.chk').forEach(function(btn) {
+    btn.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+    });
+  });
+
+  applyStates(getStates());
+
+  /* ═══════════════════════════════════════════
+     API KEY
+  ═══════════════════════════════════════════ */
+  function getApiKey() {
+    try { return localStorage.getItem('fpr-api-key') || ''; } catch(e) { return ''; }
+  }
+  function saveKey() {
+    var val = document.getElementById('keyInput').value.trim();
+    if (!val) return;
+    try { localStorage.setItem('fpr-api-key', val); } catch(e) {}
+    document.getElementById('keyBanner').classList.add('hidden');
+  }
+  (function() {
+    if (getApiKey()) document.getElementById('keyBanner').classList.add('hidden');
+  })();
+
+  /* ═══════════════════════════════════════════
+     STREAMING ENGINE
+  ═══════════════════════════════════════════ */
+  async function streamClaude(messages, systemPrompt, chatId, btnId, onDone) {
+    var apiKey = getApiKey();
+    if (!apiKey) {
+      document.getElementById('keyBanner').classList.remove('hidden');
+      document.getElementById('keyBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+    var btn = document.getElementById(btnId);
+    if (btn) btn.disabled = true;
+
+    var bubbleId = 'bubble-' + Date.now();
+    appendMsg(chatId, 'ai', '', bubbleId);
+    var bubble = document.getElementById(bubbleId);
+    var cursor = document.createElement('span');
+    cursor.className = 'ai-cursor';
+    bubble.appendChild(cursor);
+
+    var maxRetries = 2;
+    for (var attempt = 0; attempt <= maxRetries; attempt++) {
+      try {
+        if (attempt > 0) {
+          bubble.textContent = '⟳ Reconnecting…';
+          await new Promise(function(r) { setTimeout(r, 900 * attempt); });
+        }
+
+        var resp = await fetch('https://api.anthropic.com/v1/messages', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': apiKey,
+            'anthropic-version': '2023-06-01',
+            'anthropic-dangerous-direct-browser-access': 'true'
+          },
+          body: JSON.stringify({
+            model: 'claude-haiku-4-5-20251001',
+            max_tokens: 1200,
+            stream: true,
+            system: systemPrompt,
+            messages: messages
+          })
+        });
+
+        if (!resp.ok) {
+          var errData = await resp.json();
+          bubble.textContent = '⚠ ' + (errData.error?.message || 'API error — check your key.');
+          if (btn) btn.disabled = false;
+          return;
+        }
+
+        var reader = resp.body.getReader();
+        var decoder = new TextDecoder();
+        var buffer = '';
+        var text = '';
+
+        while (true) {
+          var chunk = await reader.read();
+          if (chunk.done) break;
+          buffer += decoder.decode(chunk.value, { stream: true });
+          var lines = buffer.split('\n');
+          buffer = lines.pop();
+          for (var i = 0; i < lines.length; i++) {
+            var line = lines[i];
+            if (line.startsWith('data: ')) {
+              var data = line.slice(6).trim();
+              if (data === '[DONE]') continue;
+              try {
+                var parsed = JSON.parse(data);
+                if (parsed.type === 'content_block_delta' && parsed.delta && parsed.delta.type === 'text_delta') {
+                  text += parsed.delta.text;
+                  bubble.textContent = text;
+                  bubble.appendChild(cursor);
+                  var chat = document.getElementById(chatId);
+                  chat.scrollTop = chat.scrollHeight;
+                }
+              } catch(e) {}
+            }
+          }
+        }
+        cursor.remove();
+        if (btn) btn.disabled = false;
+        if (onDone) onDone(text);
+        return; // success — exit retry loop
+
+      } catch(err) {
+        if (attempt >= maxRetries) {
+          bubble.textContent = '⚠ Connection error after ' + (maxRetries + 1) + ' attempts. Please try again.';
+          if (btn) btn.disabled = false;
+        }
+        // else loop continues with next attempt
+      }
+    }
+  }
+
+  function appendMsg(chatId, role, text, bubbleId) {
+    var chat = document.getElementById(chatId);
+    var empty = chat.querySelector('.ai-empty');
+    if (empty) empty.style.display = 'none';
+    var wrap = document.createElement('div');
+    wrap.className = 'ai-msg ' + role;
+    var who = document.createElement('div');
+    who.className = 'ai-msg-who';
+    who.textContent = role === 'ai' ? 'AI Coach' : 'You';
+    var bubble = document.createElement('div');
+    bubble.className = 'ai-bubble';
+    if (bubbleId) bubble.id = bubbleId;
+    bubble.textContent = text;
+    wrap.appendChild(who);
+    wrap.appendChild(bubble);
+    chat.appendChild(wrap);
+    chat.scrollTop = chat.scrollHeight;
+    return bubble;
+  }
+
+  /* ═══════════════════════════════════════════
+     JOURNEY MEMORY — Level 1 Connected Agent
+  ═══════════════════════════════════════════ */
+  function getCtx() {
+    try { return JSON.parse(localStorage.getItem('fpr-journey') || '{}'); }
+    catch(e) { return {}; }
+  }
+  function saveCtx(updates) {
+    var ctx = getCtx();
+    for (var k in updates) ctx[k] = updates[k];
+    try { localStorage.setItem('fpr-journey', JSON.stringify(ctx)); } catch(e) {}
+    updateJourneyPanel();
+  }
+  function buildCtxBlock() {
+    var ctx = getCtx();
+    var parts = [];
+    if (ctx.skills)   parts.push('OFFER IDEAS (from Step 1):\n' + ctx.skills);
+    if (ctx.offer)    parts.push('VALIDATED OFFER (from Step 4):\n' + ctx.offer);
+    if (ctx.customer) parts.push('CUSTOMER PROFILE (from Step 9):\n' + ctx.customer);
+    if (!parts.length) return '';
+    return '--- ENTREPRENEUR CONTEXT (use this to give personalised advice) ---\n' + parts.join('\n\n') + '\n--- END CONTEXT ---\n\n';
+  }
+  function escJ(s) {
+    return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+  function updateJourneyPanel() {
+    var ctx = getCtx();
+    var el = document.getElementById('journeyContent');
+    if (!el) return;
+    var hasAny = ctx.skills || ctx.offer || ctx.customer;
+    if (!hasAny) {
+      el.innerHTML = '<p class="journey-empty">Complete Steps 1, 4 &amp; 9 to build your memory.</p>';
+      return;
+    }
+    var html = '';
+    if (ctx.skills) {
+      html += '<div class="journey-cell"><span class="journey-cell-lbl">Offer ideas</span><span class="journey-cell-val">' + escJ(ctx.skills.substring(0,130)) + '…</span></div>';
+    }
+    if (ctx.offer) {
+      html += '<div class="journey-cell"><span class="journey-cell-lbl">Validated offer</span><span class="journey-cell-val">' + escJ(ctx.offer.substring(0,130)) + '…</span></div>';
+    }
+    if (ctx.customer) {
+      html += '<div class="journey-cell"><span class="journey-cell-lbl">Customer profile</span><span class="journey-cell-val">' + escJ(ctx.customer.substring(0,130)) + '…</span></div>';
+    }
+    el.innerHTML = html;
+  }
+  function saveCustomerProfile() {
+    var val = (document.getElementById('s9-profile') || {}).value;
+    if (!val || !val.trim()) return;
+    saveCtx({ customer: val.trim() });
+    var notice = document.getElementById('profileSavedNotice');
+    if (notice) { notice.style.display = 'block'; setTimeout(function(){ notice.style.display='none'; }, 3000); }
+  }
+  // Restore saved profile on load
+  (function() {
+    var ctx = getCtx();
+    if (ctx.customer) {
+      var ta = document.getElementById('s9-profile');
+      if (ta) ta.value = ctx.customer;
+    }
+    updateJourneyPanel();
+  })();
+
+  /* ═══════════════════════════════════════════
+     STEP 1 — SKILL DISCOVERY (multi-turn)
+  ═══════════════════════════════════════════ */
+  var s1Messages = [];
+  var s1System = "You are a warm, encouraging coach helping someone in their 50s or 60s discover what they could teach online as their first digital product. Your job is to run a short interview. Ask exactly 4 questions, one at a time — wait for each answer before moving on. Keep each question to 1-2 sentences. Be conversational and specific, not corporate.\n\nQuestion 1: Ask about their work background and what they've spent most of their career doing.\nQuestion 2: Ask what people in their life tend to come to them for advice on — anything, work or personal.\nQuestion 3: Ask about something they figured out the hard way that they wish someone had just told them.\nQuestion 4: Ask what they could happily spend hours talking about or helping someone with.\n\nAfter they answer all 4 questions, do NOT ask another question. Instead, produce a formatted list of 6–8 specific, actionable offer ideas based exactly on what they told you. Format each idea as a bold title on one line, then a 1-sentence description of what it is. End with one sentence of encouragement.";
+
+  function aiS1Start() {
+    document.getElementById('ai-s1-empty').style.display = 'none';
+    document.getElementById('ai-s1-input').style.display = 'flex';
+    var firstMsg = [{ role: 'user', content: 'Hi, I want to find out what I could teach online.' }];
+    s1Messages = firstMsg;
+    streamClaude(firstMsg, s1System, 'ai-s1-chat', 'ai-s1-btn', function(text) {
+      s1Messages.push({ role: 'assistant', content: text });
+    });
+  }
+
+  function aiS1Send() {
+    var ta = document.getElementById('ai-s1-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s1-chat', 'user', val);
+    s1Messages.push({ role: 'user', content: val });
+    ta.value = '';
+    ta.style.height = '';
+    streamClaude(s1Messages, s1System, 'ai-s1-chat', 'ai-s1-btn', function(text) {
+      s1Messages.push({ role: 'assistant', content: text });
+      // Detect the offer ideas summary — contains multiple bold titles
+      if ((text.match(/\*\*/g) || []).length >= 6) {
+        saveCtx({ skills: text.substring(0, 500) });
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 4 — IDEA VALIDATOR (context-aware)
+  ═══════════════════════════════════════════ */
+  var s4Messages = [];
+  var s4BaseSystem = "You are a sharp but encouraging business coach helping someone validate their first online product idea. They are in their 50s or 60s, new to selling online.\n\nWhen they describe their offer:\n1. Start by naming one genuine strength in the idea (1 sentence).\n2. Ask 2 probing questions that reveal whether there's real demand and a clear buyer — one question per line.\n3. After they answer your questions, give them a sharper, more specific version of their offer sentence, a suggested price range for a 1-hour session, and a name for the offer.\n\nBe direct, warm, and specific. Max 200 words per response. No bullet point lists — write in short paragraphs.";
+  function getS4System() { return buildCtxBlock() + s4BaseSystem; }
+
+  function aiS4Send() {
+    var ta = document.getElementById('ai-s4-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s4-chat', 'user', val);
+    s4Messages.push({ role: 'user', content: val });
+    ta.value = '';
+    streamClaude(s4Messages, getS4System(), 'ai-s4-chat', 'ai-s4-btn', function(text) {
+      s4Messages.push({ role: 'assistant', content: text });
+      // Save validated offer when coach gives a price range (turn 2+)
+      if (s4Messages.length >= 4 && /\$\d+/.test(text)) {
+        saveCtx({ offer: text.substring(0, 400) });
+      }
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 10 — SALES REPLY COACH (context-aware)
+  ═══════════════════════════════════════════ */
+  var s10Messages = [];
+  var s10BaseSystem = "You are a warm, practical sales conversation coach helping a first-time entrepreneur navigate replies from potential customers. The user will paste what a prospect said to them — or describe the situation — and your job is to help them respond in a way that feels human, not salesy.\n\nFor every situation, give your response in three parts:\n\n1. READ THE ROOM (1-2 sentences): Briefly explain what this prospect is really signalling — their interest level, hesitation, or what they actually need to hear.\n\n2. SEND THIS (the exact reply): Give a word-for-word message they can copy and send immediately. Keep it short — under 60 words. It should sound like a real person texting or messaging a friend, not a sales script. End with exactly one question that moves the conversation forward.\n\n3. WHY THIS WORKS (1 sentence): Explain the one reason this reply is the right move right now.\n\nRules: Never mention price in the first exchange. Never use the words 'solution', 'leverage', 'synergy', or corporate language of any kind. If the prospect seems hesitant, address their real concern — don't push harder. If they seem interested, ask a question that gets them talking about themselves. The goal is always the next message, not the close.";
+  function getS10System() { return buildCtxBlock() + s10BaseSystem; }
+
+  function aiS10Send() {
+    var ta = document.getElementById('ai-s10-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s10-chat', 'user', val);
+    s10Messages.push({ role: 'user', content: val });
+    ta.value = '';
+    ta.style.height = '';
+    streamClaude(s10Messages, getS10System(), 'ai-s10-chat', 'ai-s10-btn', function(text) {
+      s10Messages.push({ role: 'assistant', content: text });
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 13 — CONTENT IDEA GENERATOR (context-aware)
+  ═══════════════════════════════════════════ */
+  var s13BaseSystem = "You are a social media strategist helping someone new to online business create their first content plan. They are in their 50s or 60s and new to posting online.\n\nWhen they describe their offer and customer, generate exactly 10 short-form video post ideas that follow the 'jab' model — pure value, no selling whatsoever.\n\nFormat:\n- Number each idea 1–10\n- Bold title (6 words max)\n- One sentence: what to say in the video (specific, not generic)\n- One sentence: why this works for their audience\n\nEach idea must be: specific to their niche, easy to film with just a phone and natural light, immediately actionable for the viewer. Do not include any hooks or promotional posts — only value posts. End with a one-line tip about which idea to film first.";
+  function getS13System() { return buildCtxBlock() + s13BaseSystem; }
+
+  function aiS13Send() {
+    var ta = document.getElementById('ai-s13-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s13-chat', 'user', val);
+    var msgs = [{ role: 'user', content: val }];
+    ta.value = '';
+    streamClaude(msgs, getS13System(), 'ai-s13-chat', 'ai-s13-btn', null);
+  }
+
+</script>
