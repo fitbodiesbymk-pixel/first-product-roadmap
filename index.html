@@ -692,18 +692,6 @@ h1, h2, h3 { text-wrap: balance; }
   <!-- ── MAIN ── -->
   <main class="main">
 
-    <!-- API KEY BANNER -->
-    <div class="key-banner" id="keyBanner">
-      <div class="key-banner-text">
-        <strong>✦ Unlock AI Coaching</strong>
-        <p>Enter your Anthropic API key to activate the AI coaches in Steps 1, 4, 10, and 13. Your key is saved only in this browser — it's never stored anywhere else.</p>
-      </div>
-      <div class="key-input-row">
-        <input class="key-input" type="password" id="keyInput" placeholder="sk-ant-api03-…" autocomplete="off">
-        <button class="key-save-btn" onclick="saveKey()">Unlock →</button>
-      </div>
-    </div>
-
     <!-- INTRO -->
     <section class="intro">
       <span class="intro-eye">A Step-by-Step Workshop Guide</span>
@@ -1393,29 +1381,12 @@ No rush — only if it feels right to you!</div>
   /* ═══════════════════════════════════════════
      API KEY
   ═══════════════════════════════════════════ */
-  function getApiKey() {
-    try { return localStorage.getItem('fpr-api-key') || ''; } catch(e) { return ''; }
-  }
-  function saveKey() {
-    var val = document.getElementById('keyInput').value.trim();
-    if (!val) return;
-    try { localStorage.setItem('fpr-api-key', val); } catch(e) {}
-    document.getElementById('keyBanner').classList.add('hidden');
-  }
-  (function() {
-    if (getApiKey()) document.getElementById('keyBanner').classList.add('hidden');
-  })();
+  var PROXY_URL = 'https://roadmap-proxy.fitbodiesbymk.workers.dev';
 
   /* ═══════════════════════════════════════════
      STREAMING ENGINE
   ═══════════════════════════════════════════ */
   async function streamClaude(messages, systemPrompt, chatId, btnId, onDone) {
-    var apiKey = getApiKey();
-    if (!apiKey) {
-      document.getElementById('keyBanner').classList.remove('hidden');
-      document.getElementById('keyBanner').scrollIntoView({ behavior: 'smooth', block: 'center' });
-      return;
-    }
     var btn = document.getElementById(btnId);
     if (btn) btn.disabled = true;
 
@@ -1434,17 +1405,14 @@ No rush — only if it feels right to you!</div>
           await new Promise(function(r) { setTimeout(r, 900 * attempt); });
         }
 
-        var resp = await fetch('https://api.anthropic.com/v1/messages', {
+        var resp = await fetch(PROXY_URL, {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': apiKey,
-            'anthropic-version': '2023-06-01',
-            'anthropic-dangerous-direct-browser-access': 'true'
+            'Content-Type': 'application/json'
           },
           body: JSON.stringify({
             model: 'claude-haiku-4-5-20251001',
-            max_tokens: 1200,
+            max_tokens: 1000,
             stream: true,
             system: systemPrompt,
             messages: messages
@@ -1453,7 +1421,7 @@ No rush — only if it feels right to you!</div>
 
         if (!resp.ok) {
           var errData = await resp.json();
-          bubble.textContent = '⚠ ' + (errData.error?.message || 'API error — check your key.');
+          bubble.textContent = '⚠ ' + (errData.error?.message || 'Something went wrong — please try again.');
           if (btn) btn.disabled = false;
           return;
         }
