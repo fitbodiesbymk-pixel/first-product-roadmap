@@ -135,6 +135,8 @@ h1, h2, h3 { text-wrap: balance; }
   transition: background 0.15s, color 0.15s; line-height: 1.35;
 }
 .nav-grp li a:hover { background: var(--surf); color: var(--ink); text-decoration: none; }
+.nav-grp li.nav-active > a { background: var(--surf); color: var(--ink); }
+.nav-grp li.nav-active .nav-dot { border-color: var(--ink-mid); }
 .nav-dot {
   width: 7px; height: 7px; border-radius: 50%;
   border: 1.5px solid var(--border); background: transparent;
@@ -642,7 +644,7 @@ h1, h2, h3 { text-wrap: balance; }
     <span class="brand"><span style="font-size:0.7em;opacity:0.7;letter-spacing:0.06em;font-family:var(--fb);font-weight:500;">FIT BODIES BY MK</span> <span style="color:var(--ink-soft);font-weight:300;margin:0 0.3em;">·</span> First Product Roadmap</span>
     <div class="prog-wrap">
       <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-      <span class="prog-text" id="progText">0 of 15 steps complete</span>
+      <span class="prog-text" id="progText">0 of 0 steps complete</span>
     </div>
   </div>
 </div>
@@ -691,6 +693,11 @@ h1, h2, h3 { text-wrap: balance; }
 
   <!-- ── MAIN ── -->
   <main class="main">
+
+    <!-- Schema reset notice (hidden unless migration fired) -->
+    <div id="schemaResetNotice" style="display:none;margin-bottom:1.25rem;padding:0.7rem 1rem;background:var(--amber-wash);border:1px solid var(--amber-dim);border-radius:var(--r);font-size:0.8rem;color:var(--amber);">
+      This guide has been updated. Your step progress has been reset — your saved offer and customer profile are still here.
+    </div>
 
     <!-- INTRO -->
     <section class="intro">
@@ -1335,7 +1342,25 @@ No rush — only if it feels right to you!</div>
 </footer>
 
 <script>
-  const TOTAL = 15;
+  // Step count derived from DOM — survives any future step additions
+  var TOTAL = document.querySelectorAll('.step[data-step]').length;
+
+  // ── Schema versioning ─────────────────────────────────────────────
+  // Bump SCHEMA_VERSION when step IDs are renumbered so stale progress
+  // is reset rather than silently mapping to the wrong new steps.
+  var SCHEMA_VERSION = 1;
+  (function() {
+    var saved = parseInt(localStorage.getItem('fpr-schema') || '0', 10);
+    if (saved < SCHEMA_VERSION) {
+      if (saved > 0) {
+        // User had progress from an older schema — reset step states only
+        localStorage.removeItem('fpr-steps');
+        var notice = document.getElementById('schemaResetNotice');
+        if (notice) notice.style.display = 'block';
+      }
+      localStorage.setItem('fpr-schema', String(SCHEMA_VERSION));
+    }
+  })();
 
   function getStates() {
     try { return JSON.parse(localStorage.getItem('fpr-steps') || '{}'); }
@@ -1363,7 +1388,7 @@ No rush — only if it feels right to you!</div>
       if (stepEl) stepEl.classList.toggle('done', checked);
       if (navEl)  navEl.classList.toggle('nav-done', checked);
     }
-    var pct  = Math.round((done / TOTAL) * 100);
+    var pct  = TOTAL > 0 ? Math.round((done / TOTAL) * 100) : 0;
     var fill = document.getElementById('progFill');
     var text = document.getElementById('progText');
     if (fill) fill.style.width = pct + '%';
@@ -1377,6 +1402,48 @@ No rush — only if it feels right to you!</div>
   });
 
   applyStates(getStates());
+
+  // ── Sidebar navigation: scroll with header offset + active tracking ──
+  (function() {
+    var hd = document.querySelector('.hd');
+    function hdH() { return hd ? hd.offsetHeight + 16 : 70; }
+
+    // Smooth-scroll to step, offset for sticky header
+    document.querySelectorAll('.nav-grp li a[href^="#"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        var id = link.getAttribute('href').slice(1);
+        var target = document.getElementById(id);
+        if (!target) return;
+        e.preventDefault();
+        var top = target.getBoundingClientRect().top + window.scrollY - hdH();
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      });
+    });
+
+    // Active state — highlight the step currently at the top of the viewport
+    var navMap = {};
+    document.querySelectorAll('.step[data-step]').forEach(function(step) {
+      var n = step.dataset.step;
+      navMap[step.id] = document.getElementById('nav-' + n);
+    });
+
+    function updateActive() {
+      var threshold = hdH();
+      var active = null;
+      document.querySelectorAll('.step[data-step]').forEach(function(step) {
+        if (step.getBoundingClientRect().top <= threshold) active = step;
+      });
+      Object.keys(navMap).forEach(function(id) {
+        if (navMap[id]) navMap[id].classList.remove('nav-active');
+      });
+      if (active && navMap[active.id]) {
+        navMap[active.id].classList.add('nav-active');
+      }
+    }
+
+    window.addEventListener('scroll', updateActive, { passive: true });
+    updateActive();
+  })();
 
   /* ═══════════════════════════════════════════
      API KEY
