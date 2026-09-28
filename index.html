@@ -556,6 +556,21 @@ h1, h2, h3 { text-wrap: balance; }
 .closing h2 b { font-style: normal; font-weight: 700; color: var(--blue); }
 .closing p { font-size: 0.9rem; color: var(--ink-mid); max-width: 42ch; margin: 0 auto; line-height: 1.85; }
 
+/* ── COLLAPSIBLE SECTION ── */
+.collapsible-toggle {
+  display: flex; align-items: center; gap: 0.5rem;
+  background: none; border: 1px solid var(--border); border-radius: var(--r);
+  padding: 0.6rem 0.875rem; cursor: pointer; width: 100%;
+  font-family: var(--fb); font-size: 0.82rem; font-weight: 600;
+  color: var(--ink-mid); text-align: left; margin-bottom: 0;
+  transition: border-color 0.15s, color 0.15s;
+}
+.collapsible-toggle:hover { border-color: var(--ink-soft); color: var(--ink); }
+.collapsible-arrow { margin-left: auto; font-style: normal; transition: transform 0.2s; display: inline-block; }
+.collapsible-toggle.open .collapsible-arrow { transform: rotate(180deg); }
+.collapsible-body { display: none; margin-top: 0.5rem; }
+.collapsible-body.open { display: block; }
+
 /* ── MOBILE ── */
 @media (max-width: 800px) {
   .wrap { grid-template-columns: 1fr; }
@@ -1000,14 +1015,14 @@ to [the result they want]
     </section>
 
     <!-- ════════════════════════════════════
-         PHASE 2
+         PHASE 2 — PROVE IT WITH REAL PEOPLE
     ════════════════════════════════════ -->
     <section class="phase phase-2" id="phase-2">
       <div class="ph-head">
         <span class="ph-badge">Phase 2</span>
         <div>
-          <h2 class="ph-title">Set Up to Accept Payment</h2>
-          <p class="ph-sub">4 steps · Estimated time: 30–45 minutes</p>
+          <h2 class="ph-title">Prove It with Real People</h2>
+          <p class="ph-sub">5 steps · 14 days — start your clock today</p>
         </div>
       </div>
       <div class="offer-summary" id="offer-summary-p2">
@@ -1020,30 +1035,7 @@ to [the result they want]
       </div>
       <div class="steps">
 
-        <div class="step" id="s5" data-step="5">
-          <div class="step-left">
-            <span class="st-num">05</span>
-            <button class="chk" aria-label="Mark step 5 complete" onclick="toggleStep(5)">
-              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <div class="step-body">
-            <h3 class="st-title">Choose where you'll accept payment</h3>
-            <p class="st-desc">You need a way for customers to pay you online. The good news: you do not need a website. These platforms give you a payment link and a product page — everything in one place.</p>
-            <div class="cmp">
-              <table>
-                <thead><tr><th>Platform</th><th>Best for</th><th>Cost</th></tr></thead>
-                <tbody>
-                  <tr><td>Gumroad <span class="rec">Best to start</span></td><td>Coaches, guides, digital products — simplest setup, clean checkout</td><td>Free to start; 10% fee per sale</td></tr>
-                  <tr><td>Stan.store</td><td>Coaches who plan to grow — has email list + booking built in</td><td>$29/month after free trial</td></tr>
-                  <tr><td>PayPal</td><td>Sending invoices directly — less professional-looking but widely trusted</td><td>Free; ~3% fee per sale</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <div class="tip t-amber"><span class="tip-ico">→</span><span>Steps 6–8 walk you through Gumroad. If you choose a different platform, the concepts are the same — look for "create product," "set price," and "connect bank account" in their menus.</span></div>
-          </div>
-        </div>
-
+        <!-- Step 6 — Outreach List Builder -->
         <div class="step" id="s6" data-step="6">
           <div class="step-left">
             <span class="st-num">06</span>
@@ -1052,25 +1044,40 @@ to [the result they want]
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Create your Gumroad account</h3>
-            <p class="st-desc">Gumroad is a simple platform where you list your offer, share a link, and get paid — no website required, no technical skills needed. The whole signup takes about five minutes.</p>
+            <h3 class="st-title">Build your list of 10</h3>
+            <p class="st-desc">Before you write a single message, you need a list of real names. Not a target market. Not a persona. Ten specific people who might benefit from your offer — or who know someone who would. The AI coach below will help you find them.</p>
             <div class="abox">
-              <span class="abox-lbl">Step by step</span>
+              <span class="abox-lbl">Where to look</span>
               <div class="abox-body">
-                <ol>
-                  <li>Open your browser and go to <strong>gumroad.com</strong></li>
-                  <li>Click the <strong>"Start Selling"</strong> button</li>
-                  <li>Enter your name, email address, and a password you'll remember</li>
-                  <li>Open your email inbox and click the confirmation link Gumroad sends you</li>
-                  <li>You'll arrive at your Gumroad dashboard — you're now set up to sell</li>
-                  <li>Click <strong>Edit Profile</strong> and add a short one-sentence bio about what you do</li>
-                </ol>
+                <ul>
+                  <li><strong>Past work</strong> — former colleagues, clients, people you trained or managed</li>
+                  <li><strong>Community</strong> — church, sports clubs, volunteer groups, neighbours, hobby groups</li>
+                  <li><strong>Family and friends</strong> — and crucially, their extended circles ("do you know anyone who…")</li>
+                  <li><strong>Online</strong> — Facebook friends, LinkedIn connections, WhatsApp groups you're already in</li>
+                </ul>
               </div>
             </div>
-            <div class="tip t-amber"><span class="tip-ico">→</span><span>Use your real first name and a professional-sounding email address. Something like <em>yourname@gmail.com</em> works perfectly well.</span></div>
+            <div class="ai-widget w-amber" id="ai-s6">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Outreach List Builder — I'll help you find your first 10 names</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s6-chat">
+                <div class="ai-empty" id="ai-s6-empty">
+                  <p>Tell me a bit about your life — where you've worked, what communities you're part of, and who your customer is from Step 3. I'll ask a few questions, then help you build a list of 10 specific people to reach out to this week.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s6-input">
+                <textarea class="ai-textarea" id="ai-s6-text" placeholder="Example: I worked in HR for 20 years, I go to church on Sundays, I'm in a Facebook group for local business owners, and my customer is recently retired women who want to lose weight…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS6Send();}"></textarea>
+                <button class="ai-send-btn w-amber" id="ai-s6-btn" onclick="aiS6Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Write your final list of names in a notebook or notes app. You'll use it in Step 7. Ten names is your target — even 5 is a real start.</span></div>
           </div>
         </div>
 
+        <!-- Step 7 — Send first messages -->
         <div class="step" id="s7" data-step="7">
           <div class="step-left">
             <span class="st-num">07</span>
@@ -1079,25 +1086,42 @@ to [the result they want]
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Create your first product listing</h3>
-            <p class="st-desc">This is the link you'll share when someone asks how to work with you. Clear and honest is what matters. You can always update it later.</p>
-            <div class="abox">
-              <span class="abox-lbl">Step by step</span>
-              <div class="abox-body">
-                <ol>
-                  <li>From your Gumroad dashboard, click <strong>"New Product"</strong></li>
-                  <li>Choose <strong>"Service"</strong> as the product type (for a coaching session)</li>
-                  <li>Give it a clear name — specific beats clever:<br><em>"60-Minute Personal Finance Review Session"</em> works better than <em>"Coaching Call"</em></li>
-                  <li>Set your price. For 1-on-1 coaching, <strong>$97–$197</strong> is a reasonable starting point</li>
-                  <li>Write 3–5 sentences in the description: who this is for, what they'll walk away with, and what happens after they buy (e.g., "You'll receive a booking link within 24 hours")</li>
-                  <li>Click <strong>"Publish"</strong> and copy your product link</li>
-                </ol>
+            <h3 class="st-title">Send your first messages</h3>
+            <p class="st-desc">This step is not about selling. The goal is to start a genuine conversation and find out if your offer sounds interesting to real people. You are looking for curiosity and honest feedback — not a yes right now.</p>
+            <p class="st-desc" style="margin-top:0.5rem;">Many people feel awkward doing this. That's completely normal. The message below is deliberately low-pressure — you're not asking for a commitment, you're letting people know what you're doing and asking if they or anyone they know might benefit. A personal message to someone who knows you is not pushy. It's human.</p>
+            <div class="tpl">
+              <span class="tpl-lbl">Message template — send as a text, DM, or Facebook message</span>
+              <div class="tpl-body">Hey [Name], hope you're doing well!
+
+I recently started offering [brief description of what you do] for [describe your ideal customer in 2–3 words].
+
+I'm looking for a few people to work with as I get started — and I thought of you. If you or anyone you know might benefit from this, I'd love to have a quick chat. No pressure at all.
+
+Either way, hope life is treating you well!</div>
+            </div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>Send this as a personal message — not a mass email or group post. Personal messages get read. Send to all 10 names from Step 6, one by one.</span></div>
+            <div class="ai-widget w-sage" id="ai-s7">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Sales Reply Coach — paste what they said, get what to say back</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s7-chat">
+                <div class="ai-empty" id="ai-s7-empty">
+                  <p>Someone replied to your outreach — or you're not sure how to open the conversation. Paste exactly what they said (or describe the situation) and I'll give you a word-for-word reply you can send right now.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Example: <em>"She replied 'sounds interesting, tell me more' — what do I say?"</em> or <em>"He said he's tried things like this before and they didn't work."</em></p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s7-input">
+                <textarea class="ai-textarea" id="ai-s7-text" placeholder="Paste what they said, or describe the situation…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS7Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s7-btn" onclick="aiS7Send()" aria-label="Send">↑</button>
               </div>
             </div>
-            <div class="tip t-amber"><span class="tip-ico">→</span><span>Don't let perfectionism stall you. A live listing you update later beats a perfect one that never launches.</span></div>
+            <div class="tip t-blue"><span class="tip-ico">→</span><span>The goal of every reply is not to close the sale — it's to earn the next message. Ask one question. Be curious, not pushy.</span></div>
           </div>
         </div>
 
+        <!-- Step 8 — Have the conversation -->
         <div class="step" id="s8" data-step="8">
           <div class="step-left">
             <span class="st-num">08</span>
@@ -1106,26 +1130,143 @@ to [the result they want]
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Connect your bank account to receive payments</h3>
-            <p class="st-desc">When someone buys from you, Gumroad collects the money and sends it to your bank account. You need to tell it where to send your earnings.</p>
+            <h3 class="st-title">Have the conversation</h3>
+            <p class="st-desc">Someone is interested and you've arranged a quick chat. This doesn't need to be a formal presentation. It's a 20-minute conversation where you listen more than you talk — and then describe how you can help.</p>
             <div class="abox">
-              <span class="abox-lbl">Step by step</span>
+              <span class="abox-lbl">A simple structure for a 20-minute call</span>
               <div class="abox-body">
                 <ol>
-                  <li>In your Gumroad dashboard, click your profile icon in the top right corner</li>
-                  <li>Select <strong>Settings</strong> from the dropdown</li>
-                  <li>Click <strong>Payouts</strong> in the left sidebar</li>
-                  <li>Click <strong>"Add a Bank Account"</strong></li>
-                  <li>Enter your bank's <strong>routing number</strong> and your <strong>account number</strong> — find both at the bottom of a paper check, or in your bank's app under "Account Details"</li>
-                  <li>Save your information</li>
+                  <li><strong>Ask about their situation</strong> (5 min) — "Tell me a bit about where you are with [your topic] right now."</li>
+                  <li><strong>Ask what they've tried</strong> (3 min) — "What have you already done about this?" Listen carefully — this tells you what they don't want to repeat.</li>
+                  <li><strong>Ask what they want</strong> (3 min) — "If we could wave a wand, what would things look like in 3 months?" Let them paint the picture.</li>
+                  <li><strong>Describe how you'd help</strong> (5 min) — Tell them specifically what you'd do together. Make it about their situation, not a generic pitch.</li>
+                  <li><strong>State the price plainly</strong> (1 min) — "The way I work with people is [X]. My founding price is [Y]." Then stop talking. Let them respond.</li>
+                  <li><strong>Answer questions honestly</strong> — If they hesitate on price, don't drop it immediately. Ask what feels off for them. Often it's not actually the number.</li>
                 </ol>
-                <p style="margin-top:0.75rem;"><strong>What to expect:</strong> Your first actual payout typically arrives 7–21 days after your first sale. This delay is normal and won't repeat once your account is established.</p>
               </div>
             </div>
-            <div class="tip t-amber"><span class="tip-ico">→</span><span>Don't have your routing number? Call your bank's customer service line or search "<em>[your bank name] routing number</em>" — it's public information.</span></div>
+            <div class="tip t-amber"><span class="tip-ico">→</span><span>The most common mistake: talking too much about yourself and too little about them. Your job is to understand their situation well enough that they feel genuinely heard — then show them how you can help.</span></div>
+            <div class="ai-widget w-amber" id="ai-s8">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Call Rehearsal — I'll play a potential client so you can practise</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s8-chat">
+                <div class="ai-empty" id="ai-s8-empty">
+                  <p>Tell me who your offer is for and what problem you solve. I'll play a potential client — including some realistic hesitation — so you can practise before a real conversation. I'll give you feedback at the end.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">This is a safe space to feel awkward. Most people need 2–3 practice runs before a real call feels comfortable.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s8-input">
+                <textarea class="ai-textarea" id="ai-s8-text" placeholder="Describe your offer and customer, then say 'Start' to begin the role-play…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS8Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s8-btn" onclick="aiS8Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
           </div>
         </div>
 
+        <!-- Step 9 — Someone said yes: get paid -->
+        <div class="step" id="s9" data-step="9">
+          <div class="step-left">
+            <span class="st-num">09</span>
+            <button class="chk" aria-label="Mark step 9 complete" onclick="toggleStep(9)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Someone said yes — get paid</h3>
+            <p class="st-desc">Don't overthink this step. The fastest way to get paid is the best way to get paid right now. You can build a proper product page later — after you've proven people will pay.</p>
+            <div class="abox">
+              <span class="abox-lbl">Fastest option — do this today</span>
+              <div class="abox-body">
+                <p>Send a <strong>PayPal invoice</strong> or a <strong>PayPal payment link</strong> directly to the person who said yes. Go to PayPal, click "Send an Invoice," fill in the amount and your offer name, and send it to their email. They pay online and you receive the money — no product page needed.</p>
+                <p style="margin-top:0.5rem;">If you or your customer prefer not to use PayPal, any bank transfer works too. The goal is to exchange money for a confirmed booking — everything else is just admin.</p>
+              </div>
+            </div>
+            <button class="collapsible-toggle" onclick="toggleCollapsible('gumroad-walkthrough')" id="gumroad-toggle">
+              Set up a proper product page (15 min) <span class="collapsible-arrow">▾</span>
+            </button>
+            <div class="collapsible-body" id="gumroad-walkthrough">
+              <div class="abox" style="margin-top:0;">
+                <span class="abox-lbl">Choose a platform</span>
+                <div class="abox-body">
+                  <div class="cmp" style="margin:0;">
+                    <table>
+                      <thead><tr><th>Platform</th><th>Best for</th><th>Fees</th></tr></thead>
+                      <tbody>
+                        <tr><td>Gumroad <span class="rec">Simplest start</span></td><td>Coaches, guides, digital products — clean checkout, no monthly cost to start</td><td>Check gumroad.com for current fee</td></tr>
+                        <tr><td>Stan.store</td><td>Coaches planning to grow — email list and booking built in</td><td>Monthly fee after trial — check stan.store</td></tr>
+                        <tr><td>PayPal</td><td>Sending invoices directly — widely trusted, works everywhere</td><td>Check paypal.com for current rate</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="abox" style="margin-top:0.5rem;">
+                <span class="abox-lbl">Gumroad walkthrough — step by step</span>
+                <div class="abox-body">
+                  <ol>
+                    <li>Go to <strong>gumroad.com</strong> and click "Start Selling" to create a free account</li>
+                    <li>Click <strong>"New Product"</strong> and choose "Service" as the product type</li>
+                    <li>Give it a specific name — "60-Minute Finance Clarity Session" works better than "Coaching Call"</li>
+                    <li>Set your founding price from Step 4</li>
+                    <li>Write 3–5 sentences: who this is for, what they'll walk away with, what happens after they buy</li>
+                    <li>Click <strong>"Publish"</strong> and copy your product link</li>
+                  </ol>
+                  <p style="margin-top:0.75rem;"><strong>Connecting your bank account:</strong> Gumroad will ask for your bank details during setup. What they ask for depends on your country — a routing number and account number in the US, a sort code in the UK, an IBAN in Europe, and so on. Check Gumroad's supported countries list before you start, as availability varies. Your first payout after a sale typically takes 1–3 weeks while your account is being verified — this is normal.</p>
+                </div>
+              </div>
+            </div>
+            <div class="tip t-amber" style="margin-top:0.75rem;"><span class="tip-ico">→</span><span>Don't let the product page become the reason you don't get started. A PayPal invoice today beats a polished product page next month.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 10 — Deliver brilliantly + testimonial -->
+        <div class="step" id="s10" data-step="10">
+          <div class="step-left">
+            <span class="st-num">10</span>
+            <button class="chk" aria-label="Mark step 10 complete" onclick="toggleStep(10)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Deliver brilliantly — then ask for a testimonial</h3>
+            <p class="st-desc">This first client is not just a client. They are proof that your offer works. Give them your best work — and then ask them to tell you what changed for them. That is your testimonial.</p>
+            <div class="abox">
+              <span class="abox-lbl">After the session</span>
+              <div class="abox-body">
+                <ol>
+                  <li>Send a short follow-up within 24 hours — a key action point or something you want them to remember</li>
+                  <li>Wait 1–2 days, then send the message below</li>
+                  <li>Screenshot or save any reply you get — this is your evidence that your work gets results</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Testimonial request message</span>
+              <div class="tpl-body">Hi [Name],
+
+I really enjoyed our session — thank you for trusting me with this.
+
+If you found it helpful, would you be willing to send me a short note about your experience? Even 2–3 sentences would mean a great deal. I share these with people who are thinking about working with me.
+
+No rush — only if it feels right to you!</div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Add their testimonial to your product page and share it (with their permission) in your content. Your first testimonial is worth more than any advertisement.</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="done-card">
+        <span class="done-card-lbl">✓ This phase is done when…</span>
+        <ul>
+          <li>You've had 5 or more real conversations with people from your list</li>
+          <li>You have 1 paid client or a firm commitment to pay from a founding client</li>
+          <li>You have a working way to receive payment set up</li>
+          <li>You've sent at least 1 testimonial request after delivering your work</li>
+        </ul>
       </div>
     </section>
 
@@ -1899,23 +2040,72 @@ No rush — only if it feels right to you!</div>
   }
 
   /* ═══════════════════════════════════════════
-     STEP 10 — SALES REPLY COACH (context-aware)
+     STEP 6 — OUTREACH LIST BUILDER (context-aware)
   ═══════════════════════════════════════════ */
-  var s10Messages = [];
-  var s10BaseSystem = "You are a warm, practical sales conversation coach helping a first-time entrepreneur navigate replies from potential customers. The user will paste what a prospect said to them — or describe the situation — and your job is to help them respond in a way that feels human, not salesy.\n\nFor every situation, give your response in three parts:\n\n1. READ THE ROOM (1-2 sentences): Briefly explain what this prospect is really signalling — their interest level, hesitation, or what they actually need to hear.\n\n2. SEND THIS (the exact reply): Give a word-for-word message they can copy and send immediately. Keep it short — under 60 words. It should sound like a real person texting or messaging a friend, not a sales script. End with exactly one question that moves the conversation forward.\n\n3. WHY THIS WORKS (1 sentence): Explain the one reason this reply is the right move right now.\n\nRules: Never mention price in the first exchange. Never use the words 'solution', 'leverage', 'synergy', or corporate language of any kind. If the prospect seems hesitant, address their real concern — don't push harder. If they seem interested, ask a question that gets them talking about themselves. The goal is always the next message, not the close.";
-  function getS10System() { return buildCtxBlock() + s10BaseSystem; }
+  var s6Messages = [];
+  var s6BaseSystem = "You are a warm, encouraging coach helping someone in their 50s or 60s build a list of 10 specific real people to contact about their new offer. Your job is to ask about their life and connections, then help them identify names.\n\nStart by asking 2 questions in your first reply — one about their work history and communities, one about who their offer is for if they haven't said. Wait for their answers before continuing.\n\nAfter 2-3 exchanges, produce a structured list of up to 10 people. For each person, include: a role or relationship (e.g. 'Former colleague from your teaching days'), why they might be relevant or know someone who is, and a suggested conversation opener. Make the list concrete and specific based on what the user has told you.\n\nTone: warm, practical, no corporate language. Under 180 words per reply until you produce the list.";
+  function getS6System() { return buildCtxBlock() + s6BaseSystem; }
 
-  function aiS10Send() {
-    var ta = document.getElementById('ai-s10-text');
+  function aiS6Send() {
+    var ta = document.getElementById('ai-s6-text');
     var val = ta.value.trim();
     if (!val) return;
-    appendMsg('ai-s10-chat', 'user', val);
-    s10Messages.push({ role: 'user', content: val });
+    appendMsg('ai-s6-chat', 'user', val);
+    s6Messages.push({ role: 'user', content: val });
+    ta.value = '';
+    streamClaude(s6Messages, getS6System(), 'ai-s6-chat', 'ai-s6-btn', function(text) {
+      s6Messages.push({ role: 'assistant', content: text });
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 7 — SALES REPLY COACH (context-aware)
+  ═══════════════════════════════════════════ */
+  var s7Messages = [];
+  var s7BaseSystem = "You are a warm, practical sales conversation coach helping a first-time entrepreneur navigate replies from potential customers. The user will paste what a prospect said — or describe the situation — and your job is to help them respond in a way that feels human, not salesy.\n\nFor every situation, give your response in three parts:\n\n1. READ THE ROOM (1-2 sentences): Briefly explain what this prospect is really signalling — their interest level, hesitation, or what they actually need to hear.\n\n2. SEND THIS (the exact reply): Give a word-for-word message they can copy and send immediately. Keep it short — under 60 words. It should sound like a real person texting or messaging a friend, not a sales script. End with exactly one question that moves the conversation forward.\n\n3. WHY THIS WORKS (1 sentence): Explain the one reason this reply is the right move right now.\n\nRules: Never mention price in the first exchange. Never use the words 'solution', 'leverage', 'synergy', or corporate language of any kind. If the prospect seems hesitant, address their real concern — don't push harder. The goal is always the next message, not the close.";
+  function getS7System() { return buildCtxBlock() + s7BaseSystem; }
+
+  function aiS7Send() {
+    var ta = document.getElementById('ai-s7-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s7-chat', 'user', val);
+    s7Messages.push({ role: 'user', content: val });
     ta.value = '';
     ta.style.height = '';
-    streamClaude(s10Messages, getS10System(), 'ai-s10-chat', 'ai-s10-btn', function(text) {
-      s10Messages.push({ role: 'assistant', content: text });
+    streamClaude(s7Messages, getS7System(), 'ai-s7-chat', 'ai-s7-btn', function(text) {
+      s7Messages.push({ role: 'assistant', content: text });
     });
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 8 — CALL REHEARSAL (context-aware)
+  ═══════════════════════════════════════════ */
+  var s8Messages = [];
+  var s8BaseSystem = "You are playing a potential client in a role-play to help a new entrepreneur practise their first sales conversation. The entrepreneur will describe their offer and customer, then say 'Start' to begin.\n\nWhen they say Start, respond as a realistic potential client — curious but slightly cautious. Use natural, conversational language (not corporate). Include realistic hesitation at least once — things like 'that's a bit more than I expected' or 'I've tried something similar before' or 'I'm not sure I have the time right now'. Do not make it easy — but do not be hostile either.\n\nLet the conversation run for 4-6 exchanges. After the entrepreneur has had a chance to respond to your hesitation and make their case, end the role-play and give brief feedback in 3-4 bullet points: what they did well, one thing to try differently next time, and one phrase they can use when a prospect mentions price. Be kind, specific, and encouraging. They are learning something genuinely hard.\n\nIf the entrepreneur hasn't described their offer yet, ask them to do so before starting.";
+  function getS8System() { return buildCtxBlock() + s8BaseSystem; }
+
+  function aiS8Send() {
+    var ta = document.getElementById('ai-s8-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s8-chat', 'user', val);
+    s8Messages.push({ role: 'user', content: val });
+    ta.value = '';
+    streamClaude(s8Messages, getS8System(), 'ai-s8-chat', 'ai-s8-btn', function(text) {
+      s8Messages.push({ role: 'assistant', content: text });
+    });
+  }
+
+  /* ═══════════════════════════════════════════
+     COLLAPSIBLE SECTIONS
+  ═══════════════════════════════════════════ */
+  function toggleCollapsible(id) {
+    var body = document.getElementById(id);
+    var toggle = document.getElementById(id.replace('-walkthrough','') + '-toggle') ||
+                 body.previousElementSibling;
+    if (body) body.classList.toggle('open');
+    if (toggle) toggle.classList.toggle('open');
   }
 
   /* ═══════════════════════════════════════════
