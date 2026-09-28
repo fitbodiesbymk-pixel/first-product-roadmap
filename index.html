@@ -636,6 +636,66 @@ h1, h2, h3 { text-wrap: balance; }
   font-size: 0.75rem; color: var(--sage);
   margin-top: 0.35rem; display: none;
 }
+
+/* ── SAVE-FIELD NOTICE (reusable) ── */
+.save-field-notice {
+  font-size: 0.75rem; color: var(--sage);
+  margin-top: 0.35rem; display: none;
+}
+
+/* ── OFFER SUMMARY CARD (Phase 2 & 3 header) ── */
+.offer-summary {
+  display: none;
+  background: var(--sage-wash);
+  border: 1px solid var(--sage-dim);
+  border-radius: var(--rl);
+  padding: 0.875rem 1.125rem;
+  margin-bottom: 2rem;
+}
+.offer-summary.has-data { display: block; }
+.offer-summary-lbl {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--sage); margin-bottom: 0.5rem; display: block;
+}
+.offer-summary-text {
+  font-size: 0.855rem; color: var(--ink-mid); line-height: 1.65;
+}
+.offer-summary-actions {
+  display: flex; gap: 1.25rem; margin-top: 0.5rem;
+}
+.offer-summary-edit, .offer-summary-clear {
+  font-size: 0.72rem; color: var(--ink-soft); background: none;
+  border: none; cursor: pointer; text-decoration: underline;
+  text-underline-offset: 2px; padding: 0; font-family: var(--fb);
+}
+.offer-summary-edit:hover { color: var(--sage); }
+.offer-summary-clear:hover { color: var(--ink); }
+
+/* ── DONE-CRITERIA CARD (end of each phase) ── */
+.done-card {
+  margin-top: 2rem;
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--sage);
+  border-radius: var(--rl);
+  padding: 1.25rem 1.5rem;
+}
+.done-card-lbl {
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--sage); margin-bottom: 0.6rem; display: block;
+}
+.done-card ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 0.35rem;
+}
+.done-card li {
+  font-size: 0.855rem; color: var(--ink-mid); line-height: 1.6;
+  display: flex; align-items: flex-start; gap: 0.5rem;
+}
+.done-card li::before {
+  content: '○'; color: var(--sage-dim); flex-shrink: 0; margin-top: 0.05em;
+  font-size: 0.75rem;
+}
 </style>
 
 <!-- ══════════════════ HEADER ══════════════════ -->
@@ -687,7 +747,7 @@ h1, h2, h3 { text-wrap: balance; }
     <!-- Journey Memory -->
     <div class="journey-panel" id="journeyPanel">
       <div class="journey-panel-lbl">✦ Journey Memory</div>
-      <div id="journeyContent"><p class="journey-empty">Complete Steps 1, 4 &amp; 9 to build your memory.</p></div>
+      <div id="journeyContent"><p class="journey-empty">Your saved offer, customer, and price will appear here as you complete Steps 1–5.</p></div>
     </div>
   </nav>
 
@@ -880,6 +940,14 @@ to [the result they want]
           <p class="ph-sub">4 steps · Estimated time: 30–45 minutes</p>
         </div>
       </div>
+      <div class="offer-summary" id="offer-summary-p2">
+        <span class="offer-summary-lbl">✦ Your saved offer</span>
+        <div class="offer-summary-text"></div>
+        <div class="offer-summary-actions">
+          <button class="offer-summary-edit" onclick="document.getElementById('phase-1').scrollIntoView({behavior:'smooth'})">Edit in Phase 1 ↑</button>
+          <button class="offer-summary-clear" onclick="clearContext()">Clear all saved info</button>
+        </div>
+      </div>
       <div class="steps">
 
         <div class="step" id="s5" data-step="5">
@@ -1000,6 +1068,14 @@ to [the result they want]
         <div>
           <h2 class="ph-title">Find Your First Customers</h2>
           <p class="ph-sub">7 steps · Estimated time: Ongoing — start this week</p>
+        </div>
+      </div>
+      <div class="offer-summary" id="offer-summary-p3">
+        <span class="offer-summary-lbl">✦ Your saved offer</span>
+        <div class="offer-summary-text"></div>
+        <div class="offer-summary-actions">
+          <button class="offer-summary-edit" onclick="document.getElementById('phase-1').scrollIntoView({behavior:'smooth'})">Edit in Phase 1 ↑</button>
+          <button class="offer-summary-clear" onclick="clearContext()">Clear all saved info</button>
         </div>
       </div>
       <div class="steps">
@@ -1558,7 +1634,10 @@ No rush — only if it feels right to you!</div>
   }
 
   /* ═══════════════════════════════════════════
-     JOURNEY MEMORY — Level 1 Connected Agent
+     SHARED JOURNEY CONTEXT
+     Keys: skills, offerSentence, customerProfile,
+           offerTypePrice, refinedOffer, weeklyResults
+     Old keys (customer, offer) still read as fallbacks.
   ═══════════════════════════════════════════ */
   function getCtx() {
     try { return JSON.parse(localStorage.getItem('fpr-journey') || '{}'); }
@@ -1569,55 +1648,128 @@ No rush — only if it feels right to you!</div>
     for (var k in updates) ctx[k] = updates[k];
     try { localStorage.setItem('fpr-journey', JSON.stringify(ctx)); } catch(e) {}
     updateJourneyPanel();
+    renderAllOfferSummaries();
   }
+  function clearContext() {
+    if (!confirm('Clear all saved offer, customer, and price information? Your step progress is not affected.')) return;
+    localStorage.removeItem('fpr-journey');
+    updateJourneyPanel();
+    renderAllOfferSummaries();
+  }
+
   function buildCtxBlock() {
     var ctx = getCtx();
     var parts = [];
-    if (ctx.skills)   parts.push('OFFER IDEAS (from Step 1):\n' + ctx.skills);
-    if (ctx.offer)    parts.push('VALIDATED OFFER (from Step 4):\n' + ctx.offer);
-    if (ctx.customer) parts.push('CUSTOMER PROFILE (from Step 9):\n' + ctx.customer);
+    var skills          = ctx.skills;
+    var offerSentence   = ctx.offerSentence;
+    var customerProfile = ctx.customerProfile || ctx.customer;
+    var offerTypePrice  = ctx.offerTypePrice;
+    var refinedOffer    = ctx.refinedOffer    || ctx.offer;
+    var weeklyResults   = ctx.weeklyResults;
+    if (skills)          parts.push('SKILLS & OFFER IDEAS (Step 1):\n' + skills);
+    if (offerSentence)   parts.push('OFFER SENTENCE (Step 2):\n' + offerSentence);
+    if (customerProfile) parts.push('CUSTOMER PROFILE (Step 3):\n' + customerProfile);
+    if (offerTypePrice)  parts.push('OFFER TYPE & PRICE (Step 4):\n' + offerTypePrice);
+    if (refinedOffer)    parts.push('REFINED OFFER after AI validation (Step 5):\n' + refinedOffer);
+    if (weeklyResults)   parts.push('RECENT RESULTS — weekly review (Step 18):\n' + weeklyResults);
     if (!parts.length) return '';
-    return '--- ENTREPRENEUR CONTEXT (use this to give personalised advice) ---\n' + parts.join('\n\n') + '\n--- END CONTEXT ---\n\n';
+    return '--- CONTEXT: what this entrepreneur has already decided ---\n' + parts.join('\n\n') + '\n--- END CONTEXT ---\n\n';
   }
+
   function escJ(s) {
     return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
   }
+
   function updateJourneyPanel() {
     var ctx = getCtx();
     var el = document.getElementById('journeyContent');
     if (!el) return;
-    var hasAny = ctx.skills || ctx.offer || ctx.customer;
+    var offerSentence   = ctx.offerSentence;
+    var customerProfile = ctx.customerProfile || ctx.customer;
+    var offerTypePrice  = ctx.offerTypePrice;
+    var refinedOffer    = ctx.refinedOffer    || ctx.offer;
+    var skills          = ctx.skills;
+    var hasAny = skills || offerSentence || customerProfile || offerTypePrice || refinedOffer;
     if (!hasAny) {
-      el.innerHTML = '<p class="journey-empty">Complete Steps 1, 4 &amp; 9 to build your memory.</p>';
+      el.innerHTML = '<p class="journey-empty">Your saved offer, customer, and price will appear here as you complete Steps 1–5.</p>';
       return;
     }
-    var html = '';
-    if (ctx.skills) {
-      html += '<div class="journey-cell"><span class="journey-cell-lbl">Offer ideas</span><span class="journey-cell-val">' + escJ(ctx.skills.substring(0,130)) + '…</span></div>';
+    function cell(lbl, val) {
+      if (!val) return '';
+      var preview = val.length > 120 ? val.substring(0, 120) + '…' : val;
+      return '<div class="journey-cell"><span class="journey-cell-lbl">' + lbl + '</span><span class="journey-cell-val">' + escJ(preview) + '</span></div>';
     }
-    if (ctx.offer) {
-      html += '<div class="journey-cell"><span class="journey-cell-lbl">Validated offer</span><span class="journey-cell-val">' + escJ(ctx.offer.substring(0,130)) + '…</span></div>';
-    }
-    if (ctx.customer) {
-      html += '<div class="journey-cell"><span class="journey-cell-lbl">Customer profile</span><span class="journey-cell-val">' + escJ(ctx.customer.substring(0,130)) + '…</span></div>';
-    }
-    el.innerHTML = html;
+    el.innerHTML =
+      cell('Offer sentence',   offerSentence) +
+      cell('Customer',         customerProfile) +
+      cell('Offer type/price', offerTypePrice) +
+      cell('Refined offer',    refinedOffer) +
+      cell('Offer ideas',      skills);
   }
+
+  // ── Offer summary cards (Phase 2 & 3 headers) ───────────────────
+  function renderOfferSummary(elId) {
+    var el = document.getElementById(elId);
+    if (!el) return;
+    var ctx = getCtx();
+    var offer    = ctx.offerSentence   || ctx.offer    || '';
+    var customer = ctx.customerProfile || ctx.customer || '';
+    var price    = ctx.offerTypePrice  || '';
+    if (!offer && !customer && !price) { el.classList.remove('has-data'); return; }
+    el.classList.add('has-data');
+    var lines = [];
+    if (offer)    lines.push('<strong>Offer:</strong> ' + escJ(offer));
+    if (customer) lines.push('<strong>Customer:</strong> ' + escJ(customer.length > 110 ? customer.substring(0,110)+'…' : customer));
+    if (price)    lines.push('<strong>Price:</strong> ' + escJ(price));
+    el.querySelector('.offer-summary-text').innerHTML = lines.join('<br>');
+  }
+  function renderAllOfferSummaries() {
+    renderOfferSummary('offer-summary-p2');
+    renderOfferSummary('offer-summary-p3');
+  }
+
+  // ── Generic save-field helper ────────────────────────────────────
+  function saveField(key, inputId, noticeId) {
+    var el = document.getElementById(inputId);
+    var val = el ? (el.value || el.textContent || '').trim() : '';
+    if (!val) return;
+    var updates = {};
+    updates[key] = val;
+    saveCtx(updates);
+    showSaveNotice(noticeId);
+  }
+  function showSaveNotice(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = 'block';
+    setTimeout(function() { el.style.display = 'none'; }, 3000);
+  }
+
+  // ── Customer profile (Step 9 / future Step 3) ───────────────────
   function saveCustomerProfile() {
-    var val = (document.getElementById('s9-profile') || {}).value;
-    if (!val || !val.trim()) return;
-    saveCtx({ customer: val.trim() });
-    var notice = document.getElementById('profileSavedNotice');
+    var taOld = document.getElementById('s9-profile');
+    var taNew = document.getElementById('s3-profile');
+    var ta    = taNew || taOld;
+    var val   = ta ? ta.value.trim() : '';
+    if (!val) return;
+    saveCtx({ customerProfile: val });
+    var noticeOld = document.getElementById('profileSavedNotice');
+    var noticeNew = document.getElementById('s3-profile-notice');
+    var notice    = noticeNew || noticeOld;
     if (notice) { notice.style.display = 'block'; setTimeout(function(){ notice.style.display='none'; }, 3000); }
   }
-  // Restore saved profile on load
+
+  // Restore saved data on load
   (function() {
     var ctx = getCtx();
-    if (ctx.customer) {
-      var ta = document.getElementById('s9-profile');
-      if (ta) ta.value = ctx.customer;
-    }
+    var profileVal = ctx.customerProfile || ctx.customer || '';
+    // Restore into whichever textarea exists (old Step 9 or new Step 3)
+    ['s9-profile', 's3-profile'].forEach(function(id) {
+      var ta = document.getElementById(id);
+      if (ta && profileVal) ta.value = profileVal;
+    });
     updateJourneyPanel();
+    renderAllOfferSummaries();
   })();
 
   /* ═══════════════════════════════════════════
@@ -1669,9 +1821,9 @@ No rush — only if it feels right to you!</div>
     ta.value = '';
     streamClaude(s4Messages, getS4System(), 'ai-s4-chat', 'ai-s4-btn', function(text) {
       s4Messages.push({ role: 'assistant', content: text });
-      // Save validated offer when coach gives a price range (turn 2+)
+      // Save refined offer when coach gives a price range (turn 2+)
       if (s4Messages.length >= 4 && /\$\d+/.test(text)) {
-        saveCtx({ offer: text.substring(0, 400) });
+        saveCtx({ refinedOffer: text.substring(0, 400) });
       }
     });
   }
