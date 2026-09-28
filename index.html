@@ -1271,14 +1271,14 @@ No rush — only if it feels right to you!</div>
     </section>
 
     <!-- ════════════════════════════════════
-         PHASE 3
+         PHASE 3 — GET FOUND BY STRANGERS
     ════════════════════════════════════ -->
     <section class="phase phase-3" id="phase-3">
       <div class="ph-head">
         <span class="ph-badge">Phase 3</span>
         <div>
-          <h2 class="ph-title">Find Your First Customers</h2>
-          <p class="ph-sub">7 steps · Estimated time: Ongoing — start this week</p>
+          <h2 class="ph-title">Get Found by Strangers</h2>
+          <p class="ph-sub">8 steps · 30-day sprint — build a weekly rhythm</p>
         </div>
       </div>
       <div class="offer-summary" id="offer-summary-p3">
@@ -1291,93 +1291,7 @@ No rush — only if it feels right to you!</div>
       </div>
       <div class="steps">
 
-        <!-- Step 9 -->
-        <div class="step" id="s9" data-step="9">
-          <div class="step-left">
-            <span class="st-num">09</span>
-            <button class="chk" aria-label="Mark step 9 complete" onclick="toggleStep(9)">
-              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <div class="step-body">
-            <h3 class="st-title">Write your customer profile</h3>
-            <p class="st-desc">You can't find someone if you don't know who you're looking for. This exercise takes 10 minutes and makes every step that follows easier — your posts, your messages, your conversations.</p>
-            <div class="abox">
-              <span class="abox-lbl">Your action — answer these 5 questions in writing</span>
-              <div class="abox-body">
-                <ol>
-                  <li><strong>Who is this person?</strong> — Age range, life situation (e.g., "women in their 50s who recently left their corporate job")</li>
-                  <li><strong>What is the ONE problem keeping them up at night</strong> related to what you offer?</li>
-                  <li><strong>Where do they spend time online?</strong> — Facebook groups? TikTok? LinkedIn? YouTube?</li>
-                  <li><strong>What have they already tried</strong> that didn't fully work for them?</li>
-                  <li><strong>What does their life look like after you help them?</strong> — Be as specific and visual as you can</li>
-                </ol>
-              </div>
-            </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>If you're not sure, think of one specific real person you know who could use your help. Build the whole profile around them. You can adjust as you learn from real conversations.</span></div>
-
-            <div class="profile-save-area">
-              <span class="profile-save-lbl">✦ Save your customer profile — coaches will use it automatically</span>
-              <textarea class="profile-textarea" id="s9-profile" placeholder="Example: Women 50–65 who recently retired and want to lose weight without extreme diets. They've tried gym memberships that didn't stick. They spend time on Facebook and YouTube. After working with me, they feel confident in their body and have a sustainable routine." rows="4"></textarea>
-              <button class="profile-save-btn" onclick="saveCustomerProfile()">Save to memory →</button>
-              <p class="profile-saved-notice" id="profileSavedNotice">✓ Saved — your AI coaches will now know your customer</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step 10 -->
-        <div class="step" id="s10" data-step="10">
-          <div class="step-left">
-            <span class="st-num">10</span>
-            <button class="chk" aria-label="Mark step 10 complete" onclick="toggleStep(10)">
-              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </button>
-          </div>
-          <div class="step-body">
-            <h3 class="st-title">Your first customers are already in your phone</h3>
-            <p class="st-desc">Before you post anything publicly, reach out personally to people who already know and trust you. This is the fastest path to a first sale — and the step most people skip out of unnecessary embarrassment. A warm, personal message is not pushy.</p>
-            <div class="abox">
-              <span class="abox-lbl">Your action</span>
-              <div class="abox-body">
-                <p>Make a list of <strong>10 people</strong> who might need your offer or know someone who does. Think: former coworkers, neighbors, church members, Facebook friends, LinkedIn connections.</p>
-                <p>Then send each of them a message like this — as a text, Facebook message, or DM:</p>
-              </div>
-            </div>
-            <div class="tpl">
-              <span class="tpl-lbl">Message template</span>
-              <div class="tpl-body">Hey [Name], hope you're doing well!
-
-I recently started offering [brief description of what you do] for [describe your ideal customer in 2–3 words].
-
-I'm looking for a few people to work with as I get started — and I thought of you. If you or anyone you know might benefit from this, I'd love to have a quick chat. No pressure at all.
-
-Either way, hope life is treating you well!</div>
-            </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>Send this as a personal text or DM — not a mass email. Personal channels get read; bulk messages get ignored.</span></div>
-
-            <div class="ai-widget w-sage" id="ai-s10">
-              <div class="ai-widget-hd">
-                <span class="ai-badge">✦ AI Coach</span>
-                <span class="ai-name">Sales Reply Coach — paste what they said, get what to say back</span>
-                <span class="ai-model">claude haiku</span>
-              </div>
-              <div class="ai-chat" id="ai-s10-chat">
-                <div class="ai-empty" id="ai-s10-empty">
-                  <p>Someone replied to your outreach — or you're not sure how to open the conversation. Paste exactly what they said (or describe the situation) and I'll give you a word-for-word reply you can send right now.</p>
-                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Example: <em>"She replied 'sounds interesting, tell me more' — what do I say?"</em> or <em>"He said he's tried things like this before and they didn't work."</em></p>
-                </div>
-              </div>
-              <div class="ai-input-row" id="ai-s10-input">
-                <textarea class="ai-textarea" id="ai-s10-text" placeholder="Paste what they said, or describe the situation…" rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS10Send();}"></textarea>
-                <button class="ai-send-btn" id="ai-s10-btn" onclick="aiS10Send()" aria-label="Send">↑</button>
-              </div>
-            </div>
-
-            <div class="tip t-blue"><span class="tip-ico">→</span><span>The goal of every reply is not to close the sale — it's to earn the next message. Ask one question. Be curious, not pushy.</span></div>
-          </div>
-        </div>
-
-        <!-- Step 11 — NEW: Interest Media -->
+        <!-- Step 11 — How reach works now -->
         <div class="step" id="s11" data-step="11">
           <div class="step-left">
             <span class="st-num">11</span>
@@ -1386,29 +1300,34 @@ Either way, hope life is treating you well!</div>
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Understand the new rules — followers don't matter anymore</h3>
-            <p class="st-desc">Before you post anything online, you need to understand how social platforms actually work in 2026 — because the rules changed, and the change is completely in your favor.</p>
-            <div class="quote">
-              <p>"We do not live in 'social media' anymore. You're getting content based on what you're currently interested in — not who you follow."</p>
-              <cite>— Gary Vaynerchuk, 2026</cite>
-            </div>
+            <h3 class="st-title">How reach works now</h3>
+            <p class="st-desc">The old model was: build a following, then post to your following. That's slow. The shift over the last few years is that platforms like TikTok, Instagram, and YouTube now show content to people based on what they're interested in — not just who they follow. That changes the odds in your favour.</p>
             <div class="abox">
-              <span class="abox-lbl">What this means for you</span>
+              <span class="abox-lbl">What changed — and what it means for you</span>
               <div class="abox-body">
-                <p>Platforms like TikTok, Instagram Reels, and Snapchat Spotlight are now <strong>interest-based</strong>. Their algorithms show your content to people who are interested in your topic — not just your followers. This means:</p>
-                <ul style="margin-top:0.6rem;">
-                  <li>You do <strong>not</strong> need thousands of followers to reach thousands of people</li>
-                  <li>A genuinely useful first post can reach your ideal customer on day one</li>
-                  <li>Your age, follower count, and technical skills are not the barrier you think they are</li>
+                <p><strong>What used to work:</strong> grow a following first, then post to them. Hope they engage and share.</p>
+                <p style="margin-top:0.5rem;"><strong>What stopped working:</strong></p>
+                <ul style="margin-top:0.4rem;">
+                  <li>Organic reach on Facebook Pages collapsed around 2014–2016. A post to 1,000 followers might reach 30 people.</li>
+                  <li>Instagram moved away from chronological feeds and prioritised accounts already getting high engagement — hard for new accounts to break through.</li>
+                  <li>Posting without a clear strategy produced content that went nowhere.</li>
                 </ul>
-                <p style="margin-top:0.75rem;">Gary proved this by launching a brand new TikTok account with zero followers and getting <strong>8.2 million organic views</strong> on the first post. The content was good and relevant. That's the only thing that mattered.</p>
+                <p style="margin-top:0.75rem;"><strong>What works now:</strong> interest-based distribution. Platforms like TikTok, Instagram Reels, and YouTube Shorts decide who sees your content based on the topic — not your follower count. A good video from a brand-new account can reach thousands of the right people.</p>
+                <p style="margin-top:0.5rem;">This doesn't make it effortless. The barrier is content quality and consistency, not account age. That's a much fairer game for a new creator.</p>
               </div>
             </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>Read this step twice if you need to. The mindset shift — from "I need an audience first" to "good content finds its own audience" — is the most important thing in Phase 3.</span></div>
+            <div class="abox" style="margin-top:0.75rem;">
+              <span class="abox-lbl">Realistic expectations</span>
+              <div class="abox-body">
+                <p>Most people won't go viral. You don't need to. You need 5–10 paying clients, not 100,000 views. A post that reaches 300 of exactly the right people and leads to 3 enquiries is worth more than a post that gets 50,000 random views.</p>
+                <p style="margin-top:0.5rem;">Plan for 3–6 months of consistent posting before you see it compound. The people who quit before that never find out what would have happened.</p>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>The goal in Phase 3 is not to go viral. It's to show up consistently in front of the right people for 30 days. Everything else follows from that.</span></div>
           </div>
         </div>
 
-        <!-- Step 12 — NEW: Platform selection -->
+        <!-- Step 12 — Pick your platforms -->
         <div class="step" id="s12" data-step="12">
           <div class="step-left">
             <span class="st-num">12</span>
@@ -1418,50 +1337,52 @@ Either way, hope life is treating you well!</div>
           </div>
           <div class="step-body">
             <h3 class="st-title">Pick your platforms — one for reach, one for community</h3>
-            <p class="st-desc">You don't need to be everywhere. You need to be consistent in two places: one short-form video platform to reach new people, and one community space to build relationships. Choose based on where your customer already is.</p>
+            <p class="st-desc">You don't need to be everywhere. You need to be consistent in two places: one short-form video platform to reach new people, and one community space to have real conversations. Choose based on where your customer already spends time.</p>
             <div class="abox">
-              <span class="abox-lbl">Short-form video platforms — pick ONE</span>
+              <span class="abox-lbl">Short-form video — pick ONE to start</span>
               <div class="abox-body">
                 <div class="cmp" style="margin:0;">
                   <table>
-                    <thead><tr><th>Platform</th><th>Why it matters in 2026</th><th>Best if your customer is…</th></tr></thead>
+                    <thead><tr><th>Platform</th><th>Why it works</th><th>Best fit for</th></tr></thead>
                     <tbody>
                       <tr>
-                        <td>Snapchat Spotlight <span class="hot">Underpriced</span></td>
-                        <td>Gary's top 2026 pick — high algorithm boost, very low creator competition right now. Same opportunity TikTok was in 2019.</td>
-                        <td>Under 45, or anyone you want to reach before the platform gets crowded</td>
+                        <td><strong>TikTok</strong></td>
+                        <td>Strong interest-based algorithm. Very forgiving to new creators — a useful video from a zero-follower account gets seen. Fast-growing 35–60 user group.</td>
+                        <td>Most topics. Especially health, finance, life advice, business.</td>
                       </tr>
                       <tr>
-                        <td>TikTok <span class="rec">Most reach</span></td>
-                        <td>Still the most powerful discovery algorithm. Age 35–60 is one of the fastest-growing user groups. Very forgiving to new creators.</td>
-                        <td>Anyone. Especially strong if your topic is life advice, money, health, or business</td>
+                        <td><strong>Instagram Reels</strong></td>
+                        <td>Same short-form format. You can cross-post the same video from TikTok here with no extra work. Good discovery for slightly older audiences.</td>
+                        <td>45–60, especially women. Lifestyle, wellness, coaching topics.</td>
                       </tr>
                       <tr>
-                        <td>Instagram Reels</td>
-                        <td>Same short-form video format as TikTok. You can cross-post the exact same video here. Strong for slightly older audiences.</td>
-                        <td>45–60 demographic, especially women; lifestyle, wellness, coaching topics</td>
+                        <td><strong>YouTube Shorts + long-form</strong></td>
+                        <td>YouTube is also a search engine. Content here gets found by people actively searching for answers on Google. Builds compounding authority over years.</td>
+                        <td>Educational topics. Customers who search "how to…" on Google.</td>
                       </tr>
                       <tr>
-                        <td>YouTube Shorts</td>
-                        <td>Long-term play. YouTube Shorts are indexed by Google and used to train Google's AI — your content builds compounding authority over time.</td>
-                        <td>Educational topics; customers who search Google for solutions</td>
+                        <td><strong>LinkedIn</strong></td>
+                        <td>Text and video both work well. Good organic reach right now for personal accounts. Strong for business-to-professional topics.</td>
+                        <td>B2B. Customers who are professionals — coaches, managers, founders.</td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
+                <p style="margin-top:0.75rem;font-size:0.85rem;color:var(--ink-soft);">Snapchat Spotlight is worth considering if you're targeting a younger audience — lower competition at the moment — but its audience skews under 35 and it's less established for most coaching topics.</p>
               </div>
             </div>
             <div class="abox" style="margin-top:0.75rem;">
-              <span class="abox-lbl">Community platform — add ONE</span>
+              <span class="abox-lbl">Community platform — pick ONE</span>
               <div class="abox-body">
-                <p>Facebook Groups are still the best place for deeper conversations with 45+ audiences. LinkedIn works well if your customers are professionals. Choose whichever your customer profile from Step 9 points to.</p>
+                <p><strong>Facebook Groups</strong> are still the best place for deeper conversations with 40+ audiences. Find 3–5 groups where your customer already hangs out. Join to contribute, not to promote — genuine answers build faster trust than any ad.</p>
+                <p style="margin-top:0.5rem;"><strong>LinkedIn</strong> works as community if your customers are professionals. Comment on posts in your niche, answer questions, start conversations.</p>
               </div>
             </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>Pick ONE video platform and ONE community platform — that's two total. Starting on one platform done consistently beats starting on five platforms done poorly.</span></div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Pick ONE video platform and ONE community space. Two platforms done consistently beats five platforms done poorly. You can add more in 90 days.</span></div>
           </div>
         </div>
 
-        <!-- Step 13 — NEW: Content playbook -->
+        <!-- Step 13 — Join conversations first -->
         <div class="step" id="s13" data-step="13">
           <div class="step-left">
             <span class="st-num">13</span>
@@ -1470,63 +1391,30 @@ Either way, hope life is treating you well!</div>
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Your content playbook — jabs first, hooks occasionally</h3>
-            <p class="st-desc">Gary Vaynerchuk built his entire philosophy around one principle: give away value before you ask for anything in return. He calls this "jabs and hooks" — and it works because it matches how trust actually forms between people.</p>
+            <h3 class="st-title">Join conversations before you post anything</h3>
+            <p class="st-desc">Before you publish your first piece of content, spend two weeks just participating in communities where your customers already gather. You'll learn the exact language they use to describe their problems — and you'll become a familiar name before you ever ask for anything.</p>
             <div class="abox">
-              <span class="abox-lbl">The framework</span>
-              <div class="abox-body">
-                <p><strong>Jabs</strong> = free value. Tips, insights, answers to common questions, short lessons, behind-the-scenes moments. No mention of your offer. Just be genuinely helpful.</p>
-                <p style="margin-top:0.5rem;"><strong>Hooks</strong> = your offer. "Here's how to work with me." "Link in bio." "Book a session." Direct and clear.</p>
-                <p style="margin-top:0.5rem;"><strong>The ratio:</strong> For every 1 hook, post 4–5 jabs. Most new entrepreneurs do it backwards — they only post when they want to sell something, and people tune it out.</p>
-              </div>
-            </div>
-            <div class="abox">
-              <span class="abox-lbl">Three rules that matter more than anything else</span>
+              <span class="abox-lbl">How to do this well</span>
               <div class="abox-body">
                 <ol>
-                  <li><strong>Post organically first, boost later.</strong> Never spend money promoting a post until you've seen it perform for free. If it gets no traction without a budget, an ad budget won't fix it. Only boost content that's already resonating.</li>
-                  <li><strong>Consistency beats perfection.</strong> One post every day beats one perfect post every month. Gary produces 500+ pieces of content monthly for his own brand. You don't need to hit that number — but showing up regularly is non-negotiable.</li>
-                  <li><strong>Use AI to start, your voice to finish.</strong> Use Claude or ChatGPT to generate your first drafts. Then read them out loud. Change every sentence that doesn't sound like you. Your imperfect, authentic voice is more powerful than polished but generic copy.</li>
+                  <li><strong>Find 3–5 communities.</strong> Facebook Groups, Reddit threads, LinkedIn communities, or YouTube comment sections on videos your customer watches. Search for the problem your customer has, not your solution.</li>
+                  <li><strong>Read the rules before you post.</strong> Most groups ban self-promotion. Getting removed loses you credibility with exactly the people you're trying to reach.</li>
+                  <li><strong>Answer questions fully.</strong> When someone asks a question you can genuinely help with, write a complete answer. Not a teaser. Not "DM me for more." The full answer. People who give the most help earn the most trust.</li>
+                  <li><strong>Do this for 2 weeks before posting anything promotional.</strong> The goal is to become known as someone who gives before they ask.</li>
                 </ol>
               </div>
             </div>
-            <div class="tpl">
-              <span class="tpl-lbl">AI prompt — generate your first 7 posts</span>
-              <div class="tpl-body">I'm starting a business offering [your offer] for [your customer description].
-
-Please write me 7 short social media posts I can publish this week.
-Make 5 of them "jabs" — pure value, no selling, one useful tip each.
-Make 2 of them "hooks" — a soft invitation to work with me.
-
-For each post:
-— Maximum 4 sentences
-— Sound like a warm, experienced real person talking to a friend
-— End with either a question (for jabs) or a clear next step (for hooks)
-
-Platform: [TikTok / Instagram / Facebook — pick yours]</div>
-            </div>
-            <div class="ai-widget w-sage" id="ai-s13">
-              <div class="ai-widget-hd">
-                <span class="ai-badge">✦ AI Coach</span>
-                <span class="ai-name">Content Idea Generator — describe your offer, get 10 post ideas</span>
-                <span class="ai-model">claude haiku</span>
-              </div>
-              <div class="ai-chat" id="ai-s13-chat">
-                <div class="ai-empty" id="ai-s13-empty">
-                  <p>Tell me what you're selling and who it's for. I'll generate 10 jab-style post ideas — pure value, no selling — that you can use on TikTok, Instagram, or Snapchat this week.</p>
-                </div>
-              </div>
-              <div class="ai-input-row" id="ai-s13-input">
-                <textarea class="ai-textarea" id="ai-s13-text" placeholder="Example: I teach recently retired women how to manage their money without a financial advisor. My customer is 60–70, nervous about finances, active on Facebook and starting to use TikTok." rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS13Send();}"></textarea>
-                <button class="ai-send-btn" id="ai-s13-btn" onclick="aiS13Send()" aria-label="Send">↑</button>
+            <div class="abox" style="margin-top:0.75rem;">
+              <span class="abox-lbl">What you'll take from these two weeks</span>
+              <div class="abox-body">
+                <p>The exact words and phrases your customers use to describe their own problem. Use their language — not yours — in your content, your offer, your bio. This is primary research you can't get any other way.</p>
               </div>
             </div>
-
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>Read every post out loud before you publish it. If it sounds like an advertisement, it's a hook — not a jab. Rewrite it to lead with the useful thing, not the sale.</span></div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Your action this week: join 3 communities. Spend 15 minutes a day reading and answering questions. Don't mention your offer at all for the first two weeks.</span></div>
           </div>
         </div>
 
-        <!-- Step 14 — NEW: First video -->
+        <!-- Step 14 — Your content rhythm -->
         <div class="step" id="s14" data-step="14">
           <div class="step-left">
             <span class="st-num">14</span>
@@ -1535,46 +1423,46 @@ Platform: [TikTok / Instagram / Facebook — pick yours]</div>
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Record your first short-form video — simpler than you think</h3>
-            <p class="st-desc">Short-form video (TikTok, Instagram Reels, Snapchat Spotlight) is the single most powerful way to reach new people for free in 2026. Many people feel intimidated by this — but the videos that work best are not polished or produced. They're honest, direct, and useful.</p>
+            <h3 class="st-title">Build a content rhythm you can actually keep</h3>
+            <p class="st-desc">The biggest mistake new creators make is starting too fast and burning out. Start with 3 posts a week. That's enough to build momentum without it becoming unsustainable after a fortnight.</p>
             <div class="abox">
-              <span class="abox-lbl">The format that works — no editing required</span>
+              <span class="abox-lbl">What to post — the 4:1 rule</span>
               <div class="abox-body">
-                <p>Pick up your phone. Find a window with natural light. Point the camera at your face. Record 30–60 seconds using this structure:</p>
-                <ol style="margin-top:0.6rem;">
-                  <li><strong>Hook (first 2–3 seconds):</strong> Start with a bold statement or question that your customer will immediately recognize. The first 3 seconds decide whether anyone watches the rest.</li>
-                  <li><strong>Value (20–40 seconds):</strong> Give the actual insight. One clear tip. No filler. No long introduction about who you are.</li>
-                  <li><strong>Close (5 seconds):</strong> A soft invitation — "If you want help with this, my link is in my bio."</li>
-                </ol>
-              </div>
-            </div>
-            <div class="tpl">
-              <span class="tpl-lbl">Script template — fill in for your topic</span>
-              <div class="tpl-body">[Hook]
-"The #1 mistake [people like your customer] make when trying to [your topic] is..."
-
-[Value — give the real answer]
-"Most people think you need to [common wrong assumption]. But actually, what works is [your insight]. Here's why..."
-
-[Close]
-"If you're dealing with this and want some help, I work with people one-on-one — link is in my bio."</div>
-            </div>
-            <div class="abox">
-              <span class="abox-lbl">Technical setup — keep it simple</span>
-              <div class="abox-body">
-                <ul>
-                  <li><strong>Phone:</strong> Any smartphone from the last five years works perfectly</li>
-                  <li><strong>Light:</strong> Sit facing a window. Natural light is all you need.</li>
-                  <li><strong>Sound:</strong> Find a quiet room. Your phone's microphone is fine to start.</li>
-                  <li><strong>Editing:</strong> Do not edit. Post the raw video. Your first 10 videos are practice. Authenticity outperforms production quality on these platforms every time.</li>
+                <p>For every post that mentions your offer, publish four that don't. This is the ratio that builds trust.</p>
+                <ul style="margin-top:0.6rem;">
+                  <li><strong>Jab posts (the four):</strong> Answer a question you got this week. Explain a mistake you see often. Share a tip from your own experience. Break down a common misconception. "What I wish I'd known when I started [your topic]."</li>
+                  <li><strong>Hook post (the one):</strong> "If you want help with this, here's how I work with people." Link in bio or DM me. Calm and clear — no pressure.</li>
                 </ul>
               </div>
             </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>The "imperfect but real" video almost always outperforms the heavily edited one. People follow people, not productions. Press record, say the useful thing, and post it as-is.</span></div>
+            <div class="abox" style="margin-top:0.75rem;">
+              <span class="abox-lbl">Use AI to start, your voice to finish</span>
+              <div class="abox-body">
+                <p>It's fine to use Claude or ChatGPT to draft your first posts. Describe your offer, your customer, and the topic you want to cover. Then read the draft out loud. Change every sentence that doesn't sound like you. Your authentic voice is more trustworthy than polished but generic text.</p>
+              </div>
+            </div>
+            <div class="ai-widget w-sage" id="ai-s14">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Content Planner — get a 2-week posting plan built around your offer</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s14-chat">
+                <div class="ai-empty" id="ai-s14-empty">
+                  <p>Tell me your offer, your customer, and which platform you chose. I'll build a 2-week plan: 3 posts per week, 4:1 jabs-to-hooks ratio, with a draft angle or opening line for each post.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Use it as a starting point — adjust any post to match what you'd actually say.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s14-input">
+                <textarea class="ai-textarea" id="ai-s14-text" placeholder="Example: I help women 50–65 rebuild confidence after a career change. Platform: Instagram. Customer is on Instagram and Facebook." rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS14Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s14-btn" onclick="aiS14Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Read every post out loud before you publish. If it sounds like an ad, rewrite it to lead with the useful thing.</span></div>
           </div>
         </div>
 
-        <!-- Step 15 — First sale -->
+        <!-- Step 15 — Your first video -->
         <div class="step" id="s15" data-step="15">
           <div class="step-left">
             <span class="st-num">15</span>
@@ -1583,31 +1471,188 @@ Platform: [TikTok / Instagram / Facebook — pick yours]</div>
             </button>
           </div>
           <div class="step-body">
-            <h3 class="st-title">Make your first sale — then ask for a testimonial</h3>
-            <p class="st-desc">Everything before this was preparation. This is the step that makes you an entrepreneur. When someone says yes, here's exactly what to do — and what to ask for afterward.</p>
+            <h3 class="st-title">Record your first video — you don't have to be on camera</h3>
+            <p class="st-desc">Short-form video reaches people faster than any other format. But you don't have to show your face. Many people start without being on camera at all — especially while building confidence.</p>
             <div class="abox">
-              <span class="abox-lbl">When someone expresses interest</span>
+              <span class="abox-lbl">Non-camera options that work well</span>
+              <div class="abox-body">
+                <ul>
+                  <li><strong>Slides with your voice over the top.</strong> A simple presentation narrated on your phone. Make it in Canva. Record yourself talking through each slide.</li>
+                  <li><strong>Point the camera at something else.</strong> Show what you're doing — cooking, walking, working at a desk — and talk over it.</li>
+                  <li><strong>Screen recording with voiceover.</strong> Show your phone or laptop screen while you explain a concept.</li>
+                  <li><strong>Text captions over a still image.</strong> Your words appear as captions on screen. No face required. Works well on TikTok and Instagram.</li>
+                </ul>
+                <p style="margin-top:0.75rem;">When you're ready to show your face, the setup is simple: phone propped up, natural window light in front of you, no editing needed. Authenticity outperforms production quality on short-form platforms.</p>
+              </div>
+            </div>
+            <div class="abox" style="margin-top:0.75rem;">
+              <span class="abox-lbl">Structure for a 30–60 second video</span>
               <div class="abox-body">
                 <ol>
-                  <li>Reply quickly and warmly — enthusiasm from you breeds confidence in them</li>
-                  <li>Send them your Gumroad product link:<br><em>"Just click this link, complete checkout, and I'll reach out within 24 hours to schedule our session."</em></li>
-                  <li>Deliver your very best work — this person is also your first case study</li>
-                  <li>A day or two after the session, send this message:</li>
+                  <li><strong>Hook (first 3 seconds):</strong> A specific question or bold statement your customer will immediately recognise. "If you're struggling with [problem], here's why."</li>
+                  <li><strong>Value (20–40 seconds):</strong> Give the actual tip. One clear point. No long introduction about yourself.</li>
+                  <li><strong>Close (5 seconds):</strong> A soft invitation. "If you want help with this, my link is in my bio." Or ask a question to invite a comment.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="ai-widget w-sage" id="ai-s15">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Video Scripter — tell me your topic, get a ready-to-record script</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s15-chat">
+                <div class="ai-empty" id="ai-s15-empty">
+                  <p>Tell me one topic you want to cover and who it's for. I'll write a short, specific script you can record today — hook, value, and close. No filming experience needed.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">Read it out loud once and change any word that doesn't sound like you before you record.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s15-input">
+                <textarea class="ai-textarea" id="ai-s15-text" placeholder="Example: I want to do a video about why diets fail for women over 50. My customer is 50–65 and has tried losing weight before without lasting results." rows="3" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS15Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s15-btn" onclick="aiS15Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Record 10 videos before you decide whether it's working. The first few feel uncomfortable for everyone. That feeling fades around video 5 or 6.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 16 — Turn viewers into conversations -->
+        <div class="step" id="s16" data-step="16">
+          <div class="step-left">
+            <span class="st-num">16</span>
+            <button class="chk" aria-label="Mark step 16 complete" onclick="toggleStep(16)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Turn viewers into conversations</h3>
+            <p class="st-desc">Views don't pay you — conversations do. This step closes the gap between someone watching your video and someone actually reaching out to you.</p>
+            <div class="abox">
+              <span class="abox-lbl">Four things that move viewers to conversations</span>
+              <div class="abox-body">
+                <ol>
+                  <li>
+                    <strong>Your bio should do one job.</strong> Who you help and what they get — not your job title, not "passionate about fitness." Something like: "I help women 50+ lose weight without giving up the foods they love — DM me 'ready' to get started."
+                  </li>
+                  <li>
+                    <strong>Ask people to comment a keyword.</strong> In your video or caption, say: "Comment 'guide' below and I'll send you my free [thing] directly." When they comment, send them a DM. A public comment becomes a private conversation — and sales happen in private conversations.
+                  </li>
+                  <li>
+                    <strong>Have a free resource ready.</strong> A one-page PDF, a checklist, a short guide. Something specific and useful. It gives people a low-stakes reason to start talking to you before they're ready to buy.
+                  </li>
+                  <li>
+                    <strong>Capture contact details.</strong> Once you're in DMs, invite people onto your email list or WhatsApp broadcast. Your social accounts can get restricted — your email list and WhatsApp list belong to you.
+                  </li>
+                </ol>
+              </div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>If someone replies to a DM and you're not sure what to say, use the Sales Reply Coach in Step 7. It works for social DMs too, not just cold outreach.</span></div>
+          </div>
+        </div>
+
+        <!-- Step 17 — Borrow an audience -->
+        <div class="step" id="s17" data-step="17">
+          <div class="step-left">
+            <span class="st-num">17</span>
+            <button class="chk" aria-label="Mark step 17 complete" onclick="toggleStep(17)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Borrow someone else's audience</h3>
+            <p class="st-desc">The fastest way to reach new people is to appear in front of an audience someone else has already built. You don't need a large following to do this — you need to offer genuine value to their audience.</p>
+            <div class="abox">
+              <span class="abox-lbl">Four ways to do this</span>
+              <div class="abox-body">
+                <ol>
+                  <li><strong>Guest in a Facebook Group.</strong> Offer to run a free 30-minute Q&amp;A or mini-workshop for a group where your customers gather. The admin gets valuable content for their members. You get direct access to your ideal audience.</li>
+                  <li><strong>Co-hosted live session.</strong> Find someone with a complementary offer — not a competitor — and run a joint live. You promote it to your list, they promote it to theirs.</li>
+                  <li><strong>Podcast interview.</strong> Search for podcasts in your niche with 1,000–10,000 listeners. Smaller shows are easier to get on and often have more engaged listeners. One good interview can bring in 5–10 qualified enquiries.</li>
+                  <li><strong>Collaboration post.</strong> Tag another creator in a post that features both your perspectives on the same topic. They share it. Simple and low-effort.</li>
                 </ol>
               </div>
             </div>
             <div class="tpl">
-              <span class="tpl-lbl">Testimonial request message</span>
+              <span class="tpl-lbl">Pitch message — for reaching out to group admins or podcast hosts</span>
               <div class="tpl-body">Hi [Name],
 
-I really enjoyed our session — thank you for trusting me with this.
+I've been a member of [group / listener of your podcast] for a while and genuinely value what you've built here.
 
-If you found it helpful, would you be willing to send me a short note about your experience? Even 2–3 sentences would mean a great deal. I share these with people who are thinking about working with me.
+I help [who you help] with [what you help with], and I think it would be useful to your audience. I'd love to offer a free [30-minute Q&A / interview / live workshop] on [specific topic they'd find useful].
 
-No rush — only if it feels right to you!</div>
+I won't pitch my services during it — this would be purely useful content for your members. Happy to do a quick chat first if you'd like to know more.
+
+Let me know if this feels like a good fit.</div>
             </div>
-            <div class="tip t-sage"><span class="tip-ico">→</span><span>Screenshot their reply and save it. Your first testimonial is worth more than any advertisement. Add it to your Gumroad listing and share it (with their permission) in your videos and posts.</span></div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Send one outreach this week. One. Then go back to posting your regular content. Don't wait for a reply before you take the next step.</span></div>
           </div>
+        </div>
+
+        <!-- Step 18 — Free live session + weekly review -->
+        <div class="step" id="s18" data-step="18">
+          <div class="step-left">
+            <span class="st-num">18</span>
+            <button class="chk" aria-label="Mark step 18 complete" onclick="toggleStep(18)">
+              <svg class="chk-icon" width="12" height="10" viewBox="0 0 12 10" fill="none" aria-hidden="true"><path d="M1 5L4.5 8.5L11 1.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="step-body">
+            <h3 class="st-title">Run a free live session — then review your week</h3>
+            <p class="st-desc">A free live session is one of the most useful things you can do in your first 90 days. People experience your expertise before they buy. You have a direct conversation with your audience. And you learn exactly what they need in their own words.</p>
+            <div class="abox">
+              <span class="abox-lbl">How to structure 45 minutes</span>
+              <div class="abox-body">
+                <ol>
+                  <li><strong>Introduce yourself briefly</strong> (3 min) — who you are and what you'll cover today. Not your whole story.</li>
+                  <li><strong>Teach one complete idea</strong> (25 min) — a specific, actionable topic your customer struggles with. Give the whole answer, not a teaser. Giving away real value is what builds trust.</li>
+                  <li><strong>Take live questions</strong> (12 min) — write down every question. They're future content and future offer ideas.</li>
+                  <li><strong>One clear invitation</strong> (5 min) — "If you want to work through this with me, here's how." One option. One link. Calm and clear.</li>
+                </ol>
+              </div>
+            </div>
+            <div class="tpl">
+              <span class="tpl-lbl">Invitation post — to promote your free session</span>
+              <div class="tpl-body">I'm running a free live [class / workshop / Q&A] on [date] at [time].
+
+Topic: [specific thing you'll cover — e.g. "Why your past diets failed and what to do instead"]
+
+This is for you if: [1-line description of who it's for]
+
+I'll cover [what they'll leave knowing]. No pitch, no upsell — just useful.
+
+[Platform link] — drop a comment or DM me to get the link.</div>
+            </div>
+            <div class="tip t-sage"><span class="tip-ico">→</span><span>Run your first one even if only 5 people show up. The recording becomes content you can reuse. Every live session gets easier.</span></div>
+
+            <div class="ai-widget w-sage" id="ai-s18">
+              <div class="ai-widget-hd">
+                <span class="ai-badge">✦ AI Coach</span>
+                <span class="ai-name">Weekly Review — tell me how this week went, I'll help you plan the next one</span>
+                <span class="ai-model">claude haiku</span>
+              </div>
+              <div class="ai-chat" id="ai-s18-chat">
+                <div class="ai-empty" id="ai-s18-empty">
+                  <p>Tell me how your week went — what you posted, what got the most response, any conversations you had, what felt hard. I'll help you figure out what to do more of and what to change next week.</p>
+                  <p style="font-size:0.8rem;color:var(--ink-soft);margin-top:-0.25rem;">This review is worth 20 minutes every Sunday. The people who do it consistently build faster than anyone else.</p>
+                </div>
+              </div>
+              <div class="ai-input-row" id="ai-s18-input">
+                <textarea class="ai-textarea" id="ai-s18-text" placeholder="Example: Posted 3 times this week — one got 45 views, one got 800 views. Had 2 DMs. No sales yet. Ran out of energy by Thursday and skipped the Friday post." rows="4" onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();aiS18Send();}"></textarea>
+                <button class="ai-send-btn" id="ai-s18-btn" onclick="aiS18Send()" aria-label="Send">↑</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="done-card">
+          <span class="done-card-lbl">✓ This phase is done when…</span>
+          <ul>
+            <li>You've posted at least 12 pieces of content (roughly 4 weeks at 3 per week)</li>
+            <li>You've spent 2 weeks actively answering questions in your chosen communities</li>
+            <li>You've run at least 1 free live session</li>
+            <li>You've made at least 1 attempt to borrow an existing audience</li>
+            <li>You have a working system for turning viewers into DMs — bio, keyword, free resource</li>
+          </ul>
         </div>
 
       </div>
@@ -1616,7 +1661,7 @@ No rush — only if it feels right to you!</div>
     <!-- CLOSING -->
     <div class="closing">
       <h2>You're more ready<br>than <b>you think.</b></h2>
-      <p>Every person who built something meaningful online started exactly where you are — with a skill, a question, and the courage to try. The only difference between then and now is that you have a clearer map. Go take the first step.</p>
+      <p>Three phases. Eighteen steps. You started with a skill and ended with a working system — an offer, paying clients, and a way to keep finding new ones. The only step left is the next one.</p>
     </div>
 
   </main>
@@ -1635,7 +1680,7 @@ No rush — only if it feels right to you!</div>
   // ── Schema versioning ─────────────────────────────────────────────
   // Bump SCHEMA_VERSION when step IDs are renumbered so stale progress
   // is reset rather than silently mapping to the wrong new steps.
-  var SCHEMA_VERSION = 1;
+  var SCHEMA_VERSION = 2;
   (function() {
     var saved = parseInt(localStorage.getItem('fpr-schema') || '0', 10);
     if (saved < SCHEMA_VERSION) {
@@ -2109,19 +2154,54 @@ No rush — only if it feels right to you!</div>
   }
 
   /* ═══════════════════════════════════════════
-     STEP 13 — CONTENT IDEA GENERATOR (context-aware)
+     STEP 14 — CONTENT PLANNER (context-aware)
   ═══════════════════════════════════════════ */
-  var s13BaseSystem = "You are a social media strategist helping someone new to online business create their first content plan. They are in their 50s or 60s and new to posting online.\n\nWhen they describe their offer and customer, generate exactly 10 short-form video post ideas that follow the 'jab' model — pure value, no selling whatsoever.\n\nFormat:\n- Number each idea 1–10\n- Bold title (6 words max)\n- One sentence: what to say in the video (specific, not generic)\n- One sentence: why this works for their audience\n\nEach idea must be: specific to their niche, easy to film with just a phone and natural light, immediately actionable for the viewer. Do not include any hooks or promotional posts — only value posts. End with a one-line tip about which idea to film first.";
-  function getS13System() { return buildCtxBlock() + s13BaseSystem; }
+  var s14BaseSystem = "You are a content strategist helping someone new to online business build a sustainable posting habit.\n\nWhen they describe their offer, customer, and platform, generate a 2-week content plan: 3 posts per week (6 total jab posts + 2 hook posts = 14 posts over 2 weeks, but space them out naturally across 6 days).\n\nActually: produce exactly 6 weeks × 3 posts/week = output 2 weeks at 3 posts each = 6 jab posts and 2 hook posts.\n\nCorrect output: 6 jab posts + 2 hook posts = 8 posts total across 2 weeks (Mon/Wed/Fri pattern).\n\nFor each post provide:\n- Day and type (Jab or Hook)\n- A draft angle or opening line (specific to their niche, sounds like a real person talking)\n- One sentence on why this angle will resonate\n\nJab rules: pure value, no mention of their offer. Answer a real question, share a specific tip, break a misconception.\nHook rules (2 total): soft, calm invitation. 'If you want help with this, here's how I work with people.' No pressure.\n\nEnd with: 'Read each one out loud and change any word that doesn't sound like you before you post.'";
+  function getS14System() { return buildCtxBlock() + s14BaseSystem; }
 
-  function aiS13Send() {
-    var ta = document.getElementById('ai-s13-text');
+  function aiS14Send() {
+    var ta = document.getElementById('ai-s14-text');
     var val = ta.value.trim();
     if (!val) return;
-    appendMsg('ai-s13-chat', 'user', val);
+    appendMsg('ai-s14-chat', 'user', val);
     var msgs = [{ role: 'user', content: val }];
     ta.value = '';
-    streamClaude(msgs, getS13System(), 'ai-s13-chat', 'ai-s13-btn', null);
+    streamClaude(msgs, getS14System(), 'ai-s14-chat', 'ai-s14-btn', null);
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 15 — VIDEO SCRIPTER (context-aware)
+  ═══════════════════════════════════════════ */
+  var s15BaseSystem = "You are a short-form video coach helping someone record their first video for TikTok, Instagram Reels, or YouTube Shorts.\n\nWhen they describe their topic and customer, write a ready-to-record 30–60 second script with three clearly labelled sections:\n\nHOOK (3 seconds): A specific, punchy opening line that the customer will immediately recognise as being about their problem. Do not start with 'Are you...' — start with a bold statement or a question that assumes the viewer already has this problem.\n\nVALUE (20–40 seconds): The actual tip or insight. Specific. One clear point. No filler. No 'today I'm going to talk about...' — just the useful thing directly.\n\nCLOSE (5 seconds): A soft invitation. Either 'If you want help with this, my link is in my bio.' or a question that invites a comment.\n\nAfter the script, add one line: 'Read this out loud and change any word that doesn't sound like your natural voice before you record.'\n\nDo not add stage directions or production notes. Just the words to say.";
+  function getS15System() { return buildCtxBlock() + s15BaseSystem; }
+
+  function aiS15Send() {
+    var ta = document.getElementById('ai-s15-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s15-chat', 'user', val);
+    var msgs = [{ role: 'user', content: val }];
+    ta.value = '';
+    streamClaude(msgs, getS15System(), 'ai-s15-chat', 'ai-s15-btn', null);
+  }
+
+  /* ═══════════════════════════════════════════
+     STEP 18 — WEEKLY REVIEW (context-aware, saves to weeklyResults)
+  ═══════════════════════════════════════════ */
+  var s18BaseSystem = "You are a business coach running a weekly review with an entrepreneur who is in their first 90 days of building an online business.\n\nWhen they tell you how their week went, respond with:\n\n1. ONE thing that's working — based on what they said, not generic praise. Be specific.\n2. ONE adjustment — the single most useful change they could make next week. Keep it small and actionable.\n3. A 2-week momentum check — based on what they've shared, what pattern are you noticing? (Encouragement is fine, but only if earned. If they're avoiding something, name it gently.)\n4. ONE question — to help them think about next week. A real question, not a rhetorical one.\n\nTone: direct, warm, honest. Do not use corporate language. Do not pad. Assume they're capable and just need a clear perspective.\n\nIf the context block above includes past results, reference them — show continuity.";
+  function getS18System() { return buildCtxBlock() + s18BaseSystem; }
+
+  function aiS18Send() {
+    var ta = document.getElementById('ai-s18-text');
+    var val = ta.value.trim();
+    if (!val) return;
+    appendMsg('ai-s18-chat', 'user', val);
+    var msgs = [{ role: 'user', content: val }];
+    ta.value = '';
+    var ctx = getCtx();
+    ctx.weeklyResults = val;
+    saveCtx(ctx);
+    streamClaude(msgs, getS18System(), 'ai-s18-chat', 'ai-s18-btn', null);
   }
 
 </script>
